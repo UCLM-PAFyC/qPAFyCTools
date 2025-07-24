@@ -1,0 +1,7 @@
+Crop water stress using CWSI
+Soil zoning based on bare soil reflectivity
+Crop growth and monitoring using multispectral information
+Crop growth and monitoring using RGB information (esto es solo para leñosos)
+Generation of thematic maps using crop variables (esto es el krigeado, que es una herramienta propia de QGIS, 
+pero integrarla en los gemelos digitales podría estar bien, para tener todas las herramientas en el mismo “sitio”).
+Generation of alarms using crop monitoring variables

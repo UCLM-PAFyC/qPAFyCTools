@@ -1,0 +1,969 @@
+{
+	"Language": "spanish",
+	"Workflow":{
+		"text":{
+			"spanish": "Flujo de trabajo",
+			"english": "Workflow"
+		},
+		"CleanPrevious": {
+			"text":{
+				"spanish": "Reseteo directorio previo",
+				"english": "Reset previous directory"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la limpieza del trabajo anterior",
+				"english": "Process that executes the cleanup of the previous job"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Initialize": {
+			"text":{
+				"spanish": "Inicializacion del proyecto",
+				"english": "Project initialization"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la creacion del proyecto e importacion de los datos de entrada",
+				"english": "Process that executes project creation and import of input data"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Preprocess": {
+			"text":{
+				"spanish": "Preproceso del proyecto",
+				"english": "Project preprocess"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta el cosido y alineamiento inicial",
+				"english": "Process performing initial matching and alignment"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Optimize": {
+			"text":{
+				"spanish": "Optimizacion de OI",
+				"english": "Optimization of IO"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la optimizacion del alineamiento inicial con puntos de apoyo",
+				"english": "Process that performs the optimization of the initial alignment with reference points."
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Split": {
+			"text":{
+				"spanish": "Particion del proyecto",
+				"english": "Project splitting"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la particion del trabajo en tiles",
+				"english": "Process that executes the splitting of the job into tiles."
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"PointCloud": {
+			"text":{
+				"spanish": "Construccion de nube de puntos",
+				"english": "Point cloud creation"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la creacion y exportacion de la nube de puntos densa",
+				"english": "Process that executes the creation and export of the dense point cloud"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"DEMs": {
+			"text":{
+				"spanish": "Construccion de los modelos digitales de elevaciones",
+				"english": "Digital elevation models creation"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la creacion y exportacion de los modelos digitales de elevaciones",
+				"english": "Process that executes the creation and export of digital elevation models"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Orthomosaic": {
+			"text":{
+				"spanish": "Construccion del ortomosaico",
+				"english": "Orthomosaic creation"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la creacion y exportacion del ortomosaico",
+				"english": "Process that executes the creation and export of the orthomosaic"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"Report": {
+			"text":{
+				"spanish": "Construccion del informe",
+				"english": "Report creation"
+			},
+			"definition": {
+				"spanish": "Proceso que ejecuta la exportacion del informe de resultados",
+				"english": "Process that executes the export of the results report"
+			},
+			"type": "boolean",
+			"default": "True"
+		}
+	},
+	"Installation": {
+		"text":{
+			"spanish": "Requisitos de instalacion",
+			"english": "Install requirements"
+		},
+		"Geoid": {
+			"text":{
+				"spanish": "Carpeta con los modelos del geoide",
+				"english": "Geoids folder"
+			},
+			"definition":{
+				"spanish": "Carpeta con los modelos del geoide",
+				"english": "Geoids folder"
+			},
+			"type": "folder",
+			"default": ""
+		},
+		"SelectedGPUs": {
+			"text":{
+				"spanish": "GPUs activadas",
+				"english": "Activated GPUs"
+			},
+			"definition":{
+				"spanish": "Seleccion de GPUs activadas para el proceso",
+				"english": "Selection of activated GPUs for processing"
+			},
+			"type": "string",
+			"len": 1000,
+			"default": ""
+		},
+		"UseCPU": {
+			"text":{
+				"spanish": "Utilizar la CPU",
+				"english": "Use CPU"
+			},
+			"definition": {
+				"spanish": "Utilizar la CPU al realizar un procesamiento acelerado por GPU",
+				"english": "Use CPU when performing GPU accelerated processing"
+			},
+			"type": "boolean",
+			"default": "False"
+		}
+	},
+	"Project": {
+		"text":{
+			"spanish": "Proyecto",
+			"english": "Project"
+		},
+		"Label": {
+			"text":{
+				"spanish": "Etiqueta",
+				"english": "Label"
+			},
+			"definition":{
+				"spanish": "Etiqueta con la que se nombraran los productos resultantes",
+				"english": "Label to be used to name the resulting products"
+			},
+			"type": "string",
+			"len": 50,
+			"default": "Example project"
+		},
+		"EPSG": {
+			"text":{
+				"spanish": "Codigo EPSG",
+				"english": "EPSG code"
+			},
+			"definition": {
+				"spanish": "Codigo EPSG con el que se exportaran los productos resultantes",
+				"english": "EPSG code under which the resulting products are to be exported"
+			},
+			"type": "string",
+			"len": 11,
+			"default": "25830+5782"
+		},
+		"Path": {
+			"text":{
+				"spanish": "Directorio de resultados",
+				"english": "Output path"
+			},
+			"definition": {
+				"spanish": "Ruta del directorio de resultados",
+				"english": "Results directory path"
+			},
+			"type": "folder",
+			"default": ""
+		},
+		"RoiMethod": {
+			"text": {
+				"spanish": "Fuente ROI",
+				"english": "ROI source"
+			},
+			"definition": {
+				"spanish": "Metodo de definicion de la ROI",
+				"english": "Method for ROI definition"
+			},
+			"type": "values",
+			"values": {
+				"FULL": {
+					"spanish": "Region total con recubrimiento",
+					"english": "Full stereoscopic region"
+				},
+				"SHP": {
+					"spanish": "Importada de shapefile",
+					"english": "From shapefile"
+				}
+			},
+			"default": "Region total con recubrimiento"
+		},
+		"RoiPath": {
+			"text": {
+				"spanish": "Ruta ROI",
+				"english": "ROI path"
+			},
+			"definition": {
+				"spanish": "Ruta del archivo de la ROI",
+				"english": "ROI path file"
+			},
+			"type": "file open",
+			"default": ""
+		}
+	},
+	"SplitTile": {
+		"text":{
+			"spanish": "Division en celdas",
+			"english": "Split tiles"
+		},
+		"TileSize": {
+			"text":{
+				"spanish": "Tamanio de la celda",
+				"english": "Tile Size"
+			},
+			"definition":{
+				"spanish": "Tamanio de las celdas en metros (ej. 50)",
+				"english": "Tile size in meters (i.e. 50)"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 1000,
+			"singleStep": 10,
+			"default": 50
+		},
+		"TileSizeBuffer": {
+			"text":{
+				"spanish": "Ampliacion de las celdas",
+				"english": "Buffer tiles"
+			},
+			"definition":{
+				"spanish": "Porcentaje de solape entre celdas (ej. 5)",
+				"english": "Tiles percentage overlaps (ex. 5)"
+			},
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 100,
+			"singleStep": 1,
+			"default": 5
+		},
+		"Method": {
+			"text":{
+				"spanish": "Definicion de la malla de celdas a procesar",
+				"english": "Grid tiles to process definition"
+			},
+			"definition":{
+				"spanish": "Definicion de la malla de celdas a procesar",
+				"english": "Grid tiles to process definition"
+			},
+			"type": "values",
+			"values": {
+				"AUTO": {
+					"spanish": "Automatico para toda la ROI o zona estereoscopica",
+					"english": "Automatic to ROI or stereoscopi area"
+				},
+				"MANUAL": {
+					"spanish": "Malla editada por el usuario",
+					"english": "User edited Grid"
+				}
+			},
+			"default": "Malla editada por el usuario"
+		},
+		"Path": {
+			"text":{
+				"spanish": "Fichero de la malla",
+				"english": "Grid file"
+			},
+			"definition":{
+				"spanish": "Fichero de la malla editado por el usario",
+				"english": "Grid file edited by user"
+			},
+			"type": "file any",
+			"formats": "*.gpkg",
+			"default": ""
+		},
+		"MergeMethod": {
+			"text":{
+				"spanish": "Metodo de union",
+				"english": "Merge method"
+			},
+			"definition":{
+				"spanish": "Estrategia de union de los productos resultantes",
+				"english": "Merged method"
+			},
+			"type": "values",
+			"values": {
+				"Metashape":{
+					"spanish": "Metashape",
+					"english": "Metashape"
+				},
+				"OsgeoLaspy":{
+					"spanish": "OSGeo (raster) y laspy (nubes de puntos)",
+					"english": "OSGeo (raster) and laspy (points clouds)"
+				}
+			},
+			"default": "OSGeo (raster) y laspy (nubes de puntos)"
+		},
+		"MergePointClouds": {
+			"text":{
+				"spanish": "Unir nubes de puntos",
+				"english": "Merge points clouds"
+			},
+			"definition":{
+				"spanish": "Unir nubes de puntos",
+				"english": "Merge points clouds"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"MergeElevations": {
+			"text":{
+				"spanish": "Unir MDEs",
+				"english": "Merge DEMs"
+			},
+			"definition":{
+				"spanish": "Unir MDEs",
+				"english": "Merge DEMs"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"MergeOrthomosaics": {
+			"text":{
+				"spanish": "Unir ortomosaicos",
+				"english": "Merge orthomosaics"
+			},
+			"definition":{
+				"spanish": "Unir ortomosaicos",
+				"english": "Merge orthomosaics"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"MergedDEM": {
+			"text":{
+				"spanish": "Tipo de MDE a unir",
+				"english": "Type of DEM to merge"
+			},
+			"definition":{
+				"spanish": "Tipo de MDE a unir",
+				"english": "Type of DEM to merge"
+			},
+			"type": "values",
+			"values": {
+				"DSM":{
+					"spanish": "Modelo Digital de Superficies (MDS)",
+					"english": "Digital Surface Model (DSM)"
+				},
+				"DTM":{
+					"spanish": "Modelo Digital del Terreno (MDT)",
+					"english": "Digital Terrain Model (DTM)"
+				}
+			},
+			"default": "Modelo Digital de Superficies (MDS)"
+		}
+	},
+	"Photo": {
+		"text":{
+			"spanish": "Imagenes",
+			"english": "Photo"
+		},
+		"Path": {
+			"text":{
+				"spanish": "Ruta imagenes",
+				"english": "Images path"
+			},
+			"definition": {
+				"spanish": "Ruta del directorio donde se localizan las imagenes",
+				"english": "Path of the directory where the images are located"
+			},
+			"type": "folder",
+			"default": ""
+		},
+		"LocationAccuracy2D": {
+			"text":{
+				"spanish": "Precision 2D de OE",
+				"english": "2D accuracy of EO"
+			},
+			"definition": {
+				"spanish": "Precision horizontal de la orientacion externa de las imagenes en metros",
+				"english": "Horizontal accuracy of external orientation of images in meters"
+			},
+			"type": "real",
+			"decimals": 3,
+			"minimum": 0.0,
+			"maximum": 10.00,
+			"singleStep": 0.01,
+			"default": 0.08
+		},
+		"LocationAccuracyHeight": {
+			"text":{
+				"spanish": "Precision Z de OE",
+				"english": "Z accuracy of EO"
+			},
+			"definition": {
+				"spanish": "Precision vertical de la orientacion externa de las imagenes en metros",
+				"english": "Vertical accuracy of the external orientation of images in meters"
+			},
+			"type": "real",
+			"decimals": 3,
+			"minimum": 0.0,
+			"maximum": 10.00,
+			"singleStep": 0.01,
+			"default": 0.12
+		},
+		"Method": {
+			"text":{
+				"spanish": "Fuente OE",
+				"english": "Source EO"
+			},
+			"definition": {
+				"spanish": "Fuente de la que se importaran las orientaciones externas de las imagenes",
+				"english": "Source from which the external orientations of the images will be imported"
+			},
+			"type": "values",
+			"values": {
+				"NONE": {
+					"spanish": "Orientaciones externas desconocidas",
+					"english": "Unknown external orientations"
+				},
+				"CSV": {
+					"spanish": "Fichero CSV",
+					"english": "CSV file"
+				},
+				"EXIF": {
+					"spanish": "Metadatos de las imagenes",
+					"english": "EXIF"
+				}
+			},
+			"default": "EXIF"
+		},
+		"EPSG": {
+			"text":{
+				"spanish": "Codigo EPSG",
+				"english": "EPSG code"
+			},
+			"definition": {
+				"spanish": "Codigo EPSG con el que se importaran las orientaciones externas de las imagenes",
+				"english": "EPSG code with which external orientation of the images will be imported"
+			},
+			"type": "string",
+			"len": 11,
+			"default": "4326"
+		},
+		"EoPath": {
+			"text":{
+				"spanish": "Ruta OE",
+				"english": "OE path"
+			},
+			"definition": {
+				"spanish": "Ruta del archivo CSV con las orientaciones externas",
+				"english": "CSV file path with external orientations"
+			},
+			"type": "file open",
+			"default": ""
+		}
+	},
+	"OptimizeAlignment": {
+		"text":{
+			"spanish": "Orientacion",
+			"english": "Optimize alignment"
+		},
+		"Method": {
+			"text":{
+				"spanish": "Metodo de medida en las imagenes de los puntos de apoyo",
+				"english": "Method for GCPs measurements in images"
+			},
+			"definition": {
+				"spanish": "Metodo de medida de los puntos de apoyo en las imagenes",
+				"english": "Method for GCPs measurements in images"
+			},
+			"type": "values",
+			"values": {
+				"PSX": {
+					"spanish": "Medidas en la interfaz grafica de Metashape",
+					"english": "Measurements in Metashape GUI"
+				},
+				"XML": {
+					"spanish": "Medidas importadas de fichero markers XML de Metashape",
+					"english": "Measurements imported from Metashape Markers XML file"
+				}
+			},
+			"default": "Medidas en la interfaz grafica de Metashape"
+		},
+		"EPSG": {
+			"text":{
+				"spanish": "Codigo EPSG",
+				"english": "EPSG code"
+			},
+			"definition": {
+				"spanish": "Codigo EPSG de las coordenadas terreno de los puntos de apoyo",
+				"english": "EPSG code for GCPs terrain coordinates"
+			},
+			"type": "string",
+			"len": 11,
+			"default": "25830+5782"
+		},
+		"Path": {
+			"text":{
+				"spanish": "Fichero de puntos de apoyo",
+				"english": "GCPs file"
+			},
+			"definition": {
+				"spanish": "Archivo de puntos de apoyo",
+				"english": "GCPs file"
+			},
+			"type": "file open",
+			"formats": "*.txt *.csv *.xml",
+			"default": ""
+		},
+		"Accuracy": {
+			"text":{
+				"spanish": "Precision",
+				"english": "Accuracy"
+			},
+			"definition": {
+				"spanish": "Precision establecida para el alineamiento",
+				"english": "Accuracy for aligment"
+			},
+			"type": "values",
+			"values": {
+				"Highest": {
+					"spanish": "Mayor posible",
+					"english": "Highest"
+				},
+				"High": {
+					"spanish": "Alto",
+					"english": "High"
+				},
+				"Medium": {
+					"spanish": "Medio",
+					"english": "Medium"
+				},
+				"Low": {
+					"spanish": "Bajo",
+					"english": "Low"
+				},
+				"Lowest": {
+					"spanish": "Menor posible",
+					"english": "Lowest"
+				}
+			},
+			"default": "Mayor posible"
+		},
+		"ReferencePreselection": {
+			"text":{
+				"spanish": "Preseleccion",
+				"english": "Preselection"
+			},
+			"definition":{
+				"spanish": "Metodo de preseleccion de imagenes segun su localizacion",
+				"english": "Method for preselection of images based in their positions"
+			},
+			"type": "values",
+			"values": {
+				"False": {
+					"spanish": "Sin localizacion",
+					"english": "Generic without position"
+				},
+				"Source": {
+					"spanish": "Con localizacion de origen (importada desde EXIF o CSV)",
+					"english": "From imported position (CSV or EXIF)"
+				},
+				"Estimated": {
+					"spanish": "Con localizacion estimada",
+					"english": "From estimated position"
+				},
+				"Sequential": {
+					"spanish": "Con imagenes consecutivas",
+					"english": "From consecutive images"
+				}
+			},
+			"default": "Con localizacion de origen (importada desde EXIF o CSV)"
+		},
+		"TiePointLimit": {
+			"text":{
+				"spanish": "Limite",
+				"english": "Limit"
+			},
+			"definition":{
+				"spanish": "Limite de puntos de enlace",
+				"english": "Tie points limit"
+			},
+			"type": "integer",
+			"minimum": 1000,
+			"maximum": 100000,
+			"singleStep": 1000,
+			"default": 4000
+		},
+		"CalibrationF": {
+			"text":{
+				"spanish": "Focal",
+				"english": "Focal"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra la focal",
+				"english": "Select calibrate focal"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationCx": {
+			"text":{
+				"spanish": "X PPA",
+				"english": "X PPA"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra la coordenada X del PPA",
+				"english": "Select calibrate PPA X coordinate"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationCy": {
+			"text":{
+				"spanish": "Y PPA",
+				"english": "Y PPA"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra la coordenada Y del PPA",
+				"english": "Select calibrate PPA Y coordinate"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationK1": {
+			"text":{
+				"spanish": "k1",
+				"english": "k1"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra k1 de distorsion radial",
+				"english": "Select calibrate k1 radial distortion"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationK2": {
+			"text":{
+				"spanish": "k2",
+				"english": "k2"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra k2 de distorsion radial",
+				"english": "Select calibrate k2 radial distortion"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationK3": {
+			"text":{
+				"spanish": "k3",
+				"english": "k3"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra k3 de distorsion radial",
+				"english": "Select calibrate k3 radial distortion"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationK4": {
+			"text":{
+				"spanish": "k4",
+				"english": "k4"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra k4 de distorsion radial",
+				"english": "Select calibrate k4 radial distortion"
+			},
+			"type": "boolean",
+			"default": "False"
+		},
+		"CalibrationB1": {
+			"text":{
+				"spanish": "Afinidad",
+				"english": "Affinity"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra la relacion de aspecto",
+				"english": "Select calibrate aspect ratio"
+			},
+			"type": "boolean",
+			"default": "False"
+		},
+		"CalibrationB2": {
+			"text":{
+				"spanish": "Asimetria",
+				"english": "Skew"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra la asimetria",
+				"english": "Select calibrate skew"
+			},
+			"type": "boolean",
+			"default": "False"
+		},
+		"CalibrationP1": {
+			"text":{
+				"spanish": "p1",
+				"english": "p1"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra p1 de distorsion tangencial",
+				"english": "Select calibrate p1 tangential distortion"
+			},
+			"type": "boolean",
+			"default": "True"
+		},
+		"CalibrationP2": {
+			"text":{
+				"spanish": "p2",
+				"english": "p2"
+			},
+			"definition": {
+				"spanish": "Seleccionar si se calibra p2 de distorsion tangencial",
+				"english": "Select calibrate p2 tangential distortion"
+			},
+			"type": "boolean",
+			"default": "True"
+		}
+	},
+	"PointCloud": {
+		"text":{
+			"spanish": "Nube de puntos",
+			"english": "Point cloud"
+		},
+		"Quality": {
+			"text":{
+				"spanish": "Densidad",
+				"english": "Density"
+			},
+			"definition":{
+				"spanish": "Calidad final de la nube de puntos densa",
+				"english": "Dense point cloud quality"
+			},
+			"type": "values",
+			"values": {
+				"Ultrahigh": {
+					"spanish": "Mayor posible",
+					"english": "Ultrahigh"
+				},
+				"High": {
+					"spanish": "Alto",
+					"english": "High"
+				},
+				"Medium": {
+					"spanish": "Medio",
+					"english": "Medium"
+				},
+				"Low": {
+					"spanish": "Bajo",
+					"english": "Low"
+				},
+				"Lowest": {
+					"spanish": "Menor posible",
+					"english": "Lowest"
+				}
+			},
+			"default": "Mayor posible"
+		},
+		"FilterMode": {
+			"text":{
+				"spanish": "Tipo de filtrado",
+				"english": "Filter type"
+			},
+			"definition":{
+				"spanish": "Tipo de filtrado",
+				"english": "Filter type"
+			},
+			"type": "values",
+			"values": {
+				"False": {
+					"spanish": "Falso",
+					"english": "False"
+				},
+				"Mild": {
+					"spanish": "Suave",
+					"english": "Mild"
+				},
+				"Moderate": {
+					"spanish": "Moderado",
+					"english": "Moderate"
+				},
+				"Aggressive": {
+					"spanish": "Agresivo",
+					"english": "Aggressive"
+				}
+			},
+			"default": "Agresivo"
+		},
+		"ConfidenceRangeMin": {
+			"text": {
+				"spanish": "Confianza. Umbral minimo",
+				"english": "Confidence. Minimum threshold"
+			},
+			"definition": {
+				"spanish": "Numero minimo de mapas de profundidad implicados en la generacion de puntos",
+				"english": "Minimum number of depth maps involved in the point generation"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255,
+			"singleStep": 1,
+			"default": 0
+		},
+		"ConfidenceRangeMax": {
+			"text": {
+				"spanish": "Confianza. Umbral maximo",
+				"english": "Confidence. Maximum threshold"
+			},
+			"definition": {
+				"spanish": "Numero maximo de mapas de profundidad implicados en la generacion de puntos",
+				"english": "Maximum number of depth maps involved in the point generation"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255,
+			"singleStep": 1,
+			"default": 255
+		},
+		"GroundMaxAngle": {
+			"text": {
+				"spanish": "Terreno. Angulo maximo",
+				"english": "Ground. Max angle (deg)"
+			},
+			"definition": {
+				"spanish": "",
+				"english": "Sets limitation for an angle between terrain model and the line to connect the point in question with a point from a ground class"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 45,
+			"singleStep": 1,
+			"default": 15
+		},
+		"GroundMaxDistance": {
+			"text": {
+				"spanish": "Terreno. Distancia maxima (m)",
+				"english": "Ground. Max distance (m)"
+			},
+			"definition": {
+				"spanish": "",
+				"english": "Maximum distance between the point in question and terrain model"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 20,
+			"singleStep": 1,
+			"default": 1
+		},
+		"GroundMaxSlope": {
+			"text": {
+				"spanish": "Terreno. Pendiente maxima (deg)",
+				"english": "Ground. Max terrain slope (deg)"
+			},
+			"definition": {
+				"spanish": "",
+				"english": "The parameter helps to determine whether classification is used for mountainous terrain or not"
+			},
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 90,
+			"singleStep": 1,
+			"default": 45
+		},
+		"GroundCellSize": {
+			"text": {
+				"spanish": "Terreno. Tamaño malla (m)",
+				"english": "Ground. Cell size (m)"
+			},
+			"definition": {
+				"spanish": "",
+				"english": "Determines the size of the cells for point cloud to be divided into as a preparatory step in ground points classification procedure"
+			},
+			"type": "integer",
+			"minimum": 1,
+			"maximum": 100,
+			"singleStep": 1,
+			"default": 50
+		},
+		"GroundErosionRadius": {
+			"text": {
+				"spanish": "Terreno. Radio erosion (m)",
+				"english": "Ground. Erosion radius (m)"
+			},
+			"definition": {
+				"spanish": "",
+				"english": "Determines the indentation (in meters) from unclassified points to create an additional area around the object, it is useful when classifying houses and trees to exclude the remaining \"stumps\" when building DTM."
+			},
+			"type": "real",
+			"decimals": 2,
+			"minimum": 0,
+			"maximum": 100,
+			"singleStep": 1,
+			"default": 0
+		}
+	},
+	"Raster": {
+		"text": {
+			"spanish": "Productos raster",
+			"english": "Raster products"
+		},
+		"DemGSD": {
+			"text":{
+				"spanish": "GSD para MDT y MDS en metros",
+				"english": "GSD for DTM and DSM in meters"
+			},
+			"definition": {
+				"spanish": "Resolucion en metros con la que se exportaran el modelo digital de superficies y del terreno (0 para maxima posible)",
+				"english": "Resolution in metres at which the digital surface and terrain model will be exported (0 for maximum possible)."
+			},
+			"type": "real",
+			"decimals": 3,
+			"minimum": 0.0,
+			"maximum": 2.00,
+			"singleStep": 0.01,
+			"default": 0.05
+		},
+		"OrthoGSD": {
+			"text":{
+				"spanish": "GSD para ortomosaico en metros",
+				"english": "GSD for Orthomosaic in meters"
+			},
+			"definition": {
+				"spanish": "Resolucion en metros con la que se exportara el ortomosaico (0 para maxima posible)",
+				"english": "Resolution in metres at which the orthomosaic will be exported (0 for maximum possible)"
+			},
+			"type": "real",
+			"decimals": 3,
+			"minimum": 0.0,
+			"maximum": 2.00,
+			"singleStep": 0.01,
+			"default": 0.05
+		}
+	}
+}

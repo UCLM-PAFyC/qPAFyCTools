@@ -1,0 +1,216 @@
+{
+	"name": "Crop water stress using CWSI",
+	"contributions":
+	{
+		"methodology": ["Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es",
+		                "Rocío Ballesteros González, rocio.ballesteros@uclm.es"],
+		"software": ["David Hernández López, david.hernandez@uclm.es",
+		             "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es"]
+	},
+	"src": "process_crop_water_stress_using_cwsi.py",
+	"description": "A process to ...",
+	"doc": "process_crop_water_stress_using_cwsi.pdf",
+	"parameters":
+	[
+		{
+			"label": "Air temperature",
+			"argparser": "temperature",
+			"description": "Air temperature (celsius degrees)",
+			"value": 25.6,
+			"type": "real",
+			"domain": [-30.0, 80.0],
+			"output_format": "{:10.1f}"
+		},
+		{
+			"label": "Date",
+			"argparser": "date",
+			"description": "A valid date in selected format or empty when read from tag in thermal orthomosaic file name",
+			"value": "",
+			"type": "string",
+			"output_format": "{:>10s}"		
+		},
+		{
+			"label": "Date format",
+			"argparser": "date_format",
+			"description": "A valid date format for datetime.strptime python function",
+			"value": "%%Y%%m%%d",
+			"type": "string",
+			"output_format": "{:>10s}"		
+		},
+		{
+			"label": "Date from thermal orthomosaic file",
+			"argparser": "date_from_orthomosaic_file",
+			"description": "Read date from tag in thermal orthomosaic file name",
+			"value": true,
+			"type": "boolean",
+			"output_format": "{:>10s}"		
+		},
+		{
+			"label": "Scale factor to apply in thermal orthomosaic",
+			"argparser": "scale_factor_to_temperature",
+			"description": "Multiplicative factor to convert raster values in thermal orthomosaic to temperature (celsius degrees)",
+			"value": 0.01,
+			"type": "real",
+			"domain": [-1000.0, 1000.0],
+			"output_format": "{:12.4e}"		
+		},
+		{
+			"label": "Offset to apply in thermal orthomosaic",
+			"argparser": "offset_factor_to_temperature",
+			"description": "Offset to convert scaled raster values in thermal orthomosaic to temperature (celsius degrees)",
+			"value": 0.0,
+			"type": "real",
+			"domain": [-1000.0, 1000.0],
+			"output_format": "{:12.4e}"		
+		},
+		{
+			"label": "Input vector layer file",
+			"argparser": "input_vector_layer_file",
+			"description": "Input vector layer file, plants frames",
+			"value": "D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/input/Shape_cepas.shp",
+			"type": "file_read",
+			"domain": [".shp", ".gpkg"],
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Input vector layer name",
+			"argparser": "input_vector_layer_name",
+			"description": "Input vector layer name",
+			"value": "Shape_cepas",
+			"type": "string",
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Input vector layer identifier field name",
+			"argparser": "input_vector_layer_id",
+			"description": "Input vector layer identifier field name",
+			"value": "field_1",
+			"type": "string",
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Lower base line coeficient a",
+			"argparser": "lower_line_coef_a",
+			"description": "Lower base line coeficient a, line slope (adimensional)",
+			"value": -2.016800,
+			"type": "real",
+			"domain": [-1000.0, 1000.0],
+			"output_format": "{:12.4e}"		
+		},
+		{
+			"label": "Lower base line coeficient b",
+			"argparser": "lower_line_coef_b",
+			"description": "Lower base line coeficient b, value of y when x=0 (celsius degrees)",
+			"value": 2.702,
+			"type": "real",
+			"domain": [-100.0, 100.0],
+			"output_format": "{:10.3f}"		
+		},
+		{
+			"label": "Percentile maximum value",
+			"argparser": "percentile_maximum_threshold",
+			"description": "Maximum value for percentile segmentation (percentage)",
+			"value": 20.0,
+			"type": "real",
+			"domain": [0.0, 100.0],
+			"output_format": "{:10.2f}"		
+		},
+		{
+			"label": "Number of clusters for kmeans",
+			"argparser": "kmeans_clusters",
+			"description": "Number of clusters for kmeans, lower is canopy",
+			"value": 3,
+			"type": "integer",
+			"domain": [2, 50],
+			"output_format": "{:10d}"		
+		},
+		{
+			"label": "Output vector layer file",
+			"argparser": "output_vector_layer_file",
+			"description": "Output vector layer file",
+			"value": "D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/output/cepas_cwsi.gpkg",
+			"type": "file_write",
+			"domain": [".shp", ".gpkg"],
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Output vector layer name",
+			"argparser": "output_vector_layer_name",
+			"description": "Output vector layer name",
+			"value": "cswi",
+			"type": "string",
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Relative humidity",
+			"argparser": "relative_humidity",
+			"description": "Relative humidity (percentage)",
+			"value": 30.0,
+			"type": "real",
+			"domain": [0.0, 100.0],
+			"output_format": "{:10.2f}"		
+		},
+		{
+			"label": "Segmentation method",
+			"argparser": "segmentation_method",
+			"description": "Segmentation method: kmeans or percentile",
+			"value": "kmeans",
+			"type": "string",
+			"domain": ["kmeans", "percentile"],
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Input raster layer file",
+			"argparser": "input_raster_layer_file",
+			"description": "Input raster layer file, thermal orthomosaic",
+			"value": "D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/input/ORT_FTA_Tarazona_P001_20230825_4258_5782_66_mm.tif",
+			"type": "file_read",
+			"domain": [".tif"],
+			"output_format": "{:s}"		
+		},
+		{
+			"label": "Input raster layer index",
+			"argparser": "input_raster_layer_index",
+			"description": "Input raster layer index",
+			"value": 1,
+			"type": "integer",
+			"domain": [1,1000],
+			"output_format": "{:10d}"		
+		},
+		{
+			"label": "Date tag index in input raster file name",
+			"argparser": "input_raster_file_date_string_position",
+			"description": "Date tag index in input raster file name",
+			"value": 5,
+			"type": "integer",
+			"domain": [1,10],
+			"output_format": "{:10d}"		
+		},
+		{
+			"label": "Tags string separator in input raster file name",
+			"argparser": "input_raster_file_tags_string_separator",
+			"description": "Tags string separator in input raster file name",
+			"value": "_",
+			"type": "string",
+			"output_format": "{:s}"	
+		},
+		{
+			"label": "Upper base line coeficient a",
+			"argparser": "upper_line_coef_a",
+			"description": "Upper base line coeficient a, line slope (adimensional)",
+			"value": 0.221000,
+			"type": "real",
+			"domain": [-1000.0, 1000.0],
+			"output_format": "{:12.4e}"		
+		},
+		{
+			"label": "Upper base line coeficient b",
+			"argparser": "upper_line_coef_b",
+			"description": "Upper base line coeficient b, value of y when x=0 (celsius degrees)",
+			"value": 6.671,
+			"type": "real",
+			"domain": [-100.0, 100.0],
+			"output_format": "{:10.3f}"		
+		}
+	]
+}

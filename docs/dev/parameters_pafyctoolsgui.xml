@@ -1,0 +1,1466 @@
+<!DOCTYPE ParametersManager>
+<ParametersManager version="1.1">
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_CrossValidation</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Cross validation</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>0: none;1: leave one out;2: 2-fold;3: k-fold</ValueList>
+        <Value>3: k-fold</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_CrossValidationSubSamples</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Cross validation subsamples</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>5</Value>
+        <MaximumValue>100</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_ErrorMeasure</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Error measure</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>Standard Deviation;Variance</ValueList>
+        <Value>Standard Deviation</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_GSD</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Output GSD, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.00</Value>
+        <MaximumValue>10.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_InputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Input shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20230913_mmh/Marcos_export_dhl.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_OutputGeoTIFF</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output GeoTIFF file or empty for get from input shapefile name and variable</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of thematic maps using crop variables</Command>
+        <Code>BCVRM_Variable</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Field name of variable in input shapefile</Description>
+        <PrintSize>50</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>220615_vol</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_ComputeGCC</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Compute GCC</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_ComputeVolume</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Compute volume (dm3)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_CropMinimumHeight</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Crop minimum height, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.05</Value>
+        <MaximumValue>10.01</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_Date</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date in selected format or empty when read from tag in DEM file names</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DateFormat</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date format for datetime.strptime function</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>%Y%m%d</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DateFromDemFiles</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Read date from tag in dems file names</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DemFilesTagDatePosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>DEM files tag date position, starts in 1</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>4</Value>
+        <MaximumValue>10</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DemFilesTagsStringSeparator</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>DEM files tags string separator</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>_</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DsmFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>DSM file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220603_Tarazona_RGB_Vid/input/DSM-103-RGB_Tarazona_Vid_20220603_25830_2cm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_DtmFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>DTM file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220603_Tarazona_RGB_Vid/input/DEM-103-RGB_Tarazona_Vid_20220603_25830_2cm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_FramesShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Plants frames shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220426_Tarazona_Vid_A6000/output/test/vines_frames.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using RGB information</Command>
+        <Code>CCFPGP_OutputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output save file or empty for use input plants frames shapefile</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_CropsMinimumValue</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Crops minimum NDVI (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.02</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_DataFieldName</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Field name in frames shapefile with data values, gcc or volume</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>220905_gcc</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_DateFormat</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date format for datetime.strptime function</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>%%Y%%m%%d</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_FramesShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Plants frames shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220426_Tarazona_Vid_A6000/output/vines_frames_gcc_vol_allDates.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_MethodData</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Method: gcc or vol</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>gcc;vol</ValueList>
+        <Value>gcc</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_MinimumValueForPercentile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum value for percentile segmentation (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.05</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_NumberOfClustersForKmeans</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Number of clusters for kmeans</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>6</Value>
+        <MaximumValue>50</MaximumValue>
+        <MinimumValue>2</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_OutputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output save file or empty for use input plants frames shapefile</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220426_Tarazona_Vid_A6000/output/vines_frames_gcc_vol_allDates_gcc_kmeans.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Generation of alarms based using crop monitoring variables</Command>
+        <Code>CMGCCVOL_SegmentationMethod</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Segmentation method: kmeans or percentile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>kmeans;percentile</ValueList>
+        <Value>kmeans</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_BlueBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Blue band position in multispectral orthomosaics (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_CropsMinimumNDVI</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Crops minimum NDVI (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.50</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_Date</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date in selected format or empty when read from tag in multispectral orthomosaic file name</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_DateFormat</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date format for datetime.strptime function</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>%%Y%%m%%d</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_DateFromMultispectralOrthomosaicFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Read date from tag in multispectral orthomosaic file name</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_FactorToReflectance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Multiplicative factor to convert raster values in multispectral orthomosaic to reflectance (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.000000</Value>
+        <MaximumValue>100000.000000</MaximumValue>
+        <MinimumValue>0.000001</MinimumValue>
+        <PrintPrecision>6</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_FramesShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Plants frames shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/Problema_maiz_20250214/input/cuadricula_recortada.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_GreenBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Green band position in multispectral orthomosaics (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>2</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_MinimumValueForPercentile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum value for percentile segmentation (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.05</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_MultispectralOrthomosaicFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Multispectral orthomosaic file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/Problema_maiz_20250214/input/ORT-303-RFL-Tarazona_MaizVid_20240725_25830_1.7cm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_MultispectralOrthomosaicFileTagDatePosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Multispectral orthomosaic file tag date position, starts in 1</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>3</Value>
+        <MaximumValue>10</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_MultispectralOrthomosaicFileTagsStringSeparator</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Multispectral orthomosaic file tags string separator</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>_</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_NirBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Nir band position in multispectral orthomosaics (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>5</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_NumberOfClustersForKmeans</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Number of clusters for kmeans</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>6</Value>
+        <MaximumValue>50</MaximumValue>
+        <MinimumValue>2</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_OutputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output save file or empty for use input plants frames shapefile</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/Problema_maiz_20250214/output/ouput.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_RedBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Red band position in multispectral orthomosaics (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>3</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_SegmentationMethod</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Segmentation method: kmeans or percentile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>kmeans;percentile</ValueList>
+        <Value>kmeans</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop growth and development monitoring using multispectral information</Command>
+        <Code>CMNDVI_SoilRGBMaximumReflectance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Maximum value of soil RGB reflectance (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.08</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_AirTemperature</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Air temperature (Celsius degrees)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>25.6</Value>
+        <MaximumValue>60.0</MaximumValue>
+        <MinimumValue>0.0</MinimumValue>
+        <PrintPrecision>1</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_Date</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date in selected format or empty when read from tag in thermal orthomosaic file name</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_DateFormat</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>A valid date format for datetime.strptime function</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>%%Y%%m%%d</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_DateFromThermalOrthomosaicFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Read date from tag in thermal orthomosaic file name</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_FactorToTemperature</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Multiplicative factor to convert raster values in thermal orthomosaic to temperature (celsius degrees)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.010000</Value>
+        <MaximumValue>100000.000000</MaximumValue>
+        <MinimumValue>0.000001</MinimumValue>
+        <PrintPrecision>6</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_FramesShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Plants frames shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/input/Shape_cepas.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_LowerBaselineCoeficientA</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Lower base line coeficient a, line slope (adimensional)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>-2.016800</Value>
+        <MaximumValue>10000.000000</MaximumValue>
+        <MinimumValue>-10000.000000</MinimumValue>
+        <PrintPrecision>6</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_LowerBaselineCoeficientB</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Lower base line coeficient b, value of y when x=0 (celsius degrees)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>2.702</Value>
+        <MaximumValue>100.000</MaximumValue>
+        <MinimumValue>-100.000</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_MaximumValueForPercentile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Maximum value for percentile segmentation (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.20</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_NumberOfClustersForKmeans</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Number of clusters for kmeans, lower is canopy</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>3</Value>
+        <MaximumValue>50</MaximumValue>
+        <MinimumValue>2</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_OutputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output save file or empty for use input plants frames shapefile</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/output/Shape_cepas_cwsi.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_RelativeHumidity</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Relative humidity (percentage)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>30.0</Value>
+        <MaximumValue>100.0</MaximumValue>
+        <MinimumValue>0.0</MinimumValue>
+        <PrintPrecision>1</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_SegmentationMethod</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Segmentation method: kmeans or percentile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>kmeans;percentile</ValueList>
+        <Value>kmeans</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_ThermalOrthomosaicFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Thermal orthomosaic file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/input/ORT_FTA_Tarazona_P001_20230825_4258_5782_66_mm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_ThermalOrthomosaicFileTagDatePosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Thermal orthomosaic file tag date position, starts in 1</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>5</Value>
+        <MaximumValue>10</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_ThermalOrthomosaicFileTagsStringSeparator</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Thermal orthomosaic file tags string separator</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>_</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_UpperBaselineCoeficientA</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Upper base line coeficient a, line slope (adimensional)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.221000</Value>
+        <MaximumValue>10000.000000</MaximumValue>
+        <MinimumValue>-10000.000000</MinimumValue>
+        <PrintPrecision>6</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Crop water stress using CWSI</Command>
+        <Code>CWSITHO_UpperBaselineCoeficientB</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Upper base line coeficient b, value of y when x=0 (celsius degrees)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>6.671</Value>
+        <MaximumValue>100.000</MaximumValue>
+        <MinimumValue>-100.000</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_BandsToUse</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Bands to use, starting in 1, and separated by ; character</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1;2;4;5;6</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_CropMinimumHeight</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Crop minimum height, in meters, 0.0 for no use it, positive for vegetation over value and negative for vegetation below value</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.05</Value>
+        <MaximumValue>10.01</MaximumValue>
+        <MinimumValue>-10.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_DsmFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>DSM file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20241218_Cebreros/20240814_Cebreros_25830_DSM.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_DtmFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>DTM file (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20241218_Cebreros/20240814_Cebreros_25830_DTM.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_FactorToReflectance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Multiplicative factor to convert raster values in multispectral orthomosaic to reflectance (per unit)(1/32768, ...)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.000030518</Value>
+        <MaximumValue>100000.000000000</MaximumValue>
+        <MinimumValue>0.000000000</MinimumValue>
+        <PrintPrecision>9</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_GridSpacing</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Grid spacing</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.000</Value>
+        <MaximumValue>10.000</MaximumValue>
+        <MinimumValue>0.500</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_InputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Input shapefile (SHP) with polygons of ROIs</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20241218_Cebreros/cebreros_mfha_roi.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_MinimumExplainedVariance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum explained variance from selected principal components, in percentage</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>80.0</Value>
+        <MaximumValue>100.0</MaximumValue>
+        <MinimumValue>0.0</MinimumValue>
+        <PrintPrecision>1</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_NirBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Nir band position in multispectral orthomosaic (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>6</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_Orthomosaic</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Input multispectral orthomosaic (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20241218_Cebreros/20240814_Cebreros_25830_clipped.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_OrthomosaicNoDataValue</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Orthomosaic no data value, if not defined in GeoTIFF file</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>-32767</Value>
+        <MaximumValue>65535</MaximumValue>
+        <MinimumValue>-65535</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_OutputPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Output path or empty for multispectral orthomosaic path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20241218_Cebreros/output_debug</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_QualityWeightFactorByCluster</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Quality weight factor by cluster, ordered from lowest to highest value of NDVI, separated by ; character</Description>
+        <PrintSize>30</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1.0;2.0;3.0;4.0</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_RedBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Red band position in multispectral orthomosaic (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>4</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_UseOnlyOnePrincipalComponent</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Use only one principal component</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_VegetationMinimumNDVI</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Vegetation minimum NDVI (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.20</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.05</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Monitoring flora at high altitude</Command>
+        <Code>MFHA_VegetationMinimumNirReflectance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Vegetation minimum NIR reflectance</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.30</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 3. Plants frame</Command>
+        <Code>PLPPC_PF_PROJECT_ID</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Project ID (no spaces)</Description>
+        <PrintSize>100</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>20250321_Austria</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 2. Plants location</Command>
+        <Code>PLPPC_PL_CRS_EPSG_CODE</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Código EPSG del sistema de coordenadas</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>25829;25830;25831;25829+5782;25830+5782;25831+5782;3416</ValueList>
+        <Value>3416</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 2. Plants location</Command>
+        <Code>PLPPC_PL_PROJECT_ID</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Project ID (no spaces)</Description>
+        <PrintSize>100</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>20250321_Austria</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 2. Plants location</Command>
+        <Code>PLPPC_PL_ROIShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Region of interest shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/roi_Vineyard2.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing</Command>
+        <Code>PLPPC_PP_CRS_EPSG_CODE</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Código EPSG del sistema de coordenadas</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>25829;25830;25831;25829+5782;25830+5782;25831+5782;3416</ValueList>
+        <Value>25830</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing</Command>
+        <Code>PLPPC_PP_LAStoolsPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>LAStools binaries files patah</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>C:/LAStools/bin</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_ATH2D</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>2d step for point cloud adaptative thinning, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.20</Value>
+        <MaximumValue>2.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_ATHH</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Height step for point cloud adaptative thinning, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.04</Value>
+        <MaximumValue>0.50</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_CRS_EPSG_CODE</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Código EPSG del sistema de coordenadas</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>25829;25830;25831;25829+5782;25830+5782;25831+5782;3416</ValueList>
+        <Value>25830</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_DTM_GSD</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>GSD for output DTM, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.100</Value>
+        <MaximumValue>5.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_GCS</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Step for point cloud ground classification, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.50</Value>
+        <MaximumValue>2.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_LAStoolsPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>LAStools binaries files path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>C:/LAStools/bin</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_PointCloudFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Point cloud file (LAS/LAZ)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/230329_FuenteAlamo_Vid_A6000/input_data/230329_FuenteAlamo_Vid_A6000_PC_25830_gcp-001.laz</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_ROIShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Region of interest shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/230329_FuenteAlamo_Vid_A6000/input_data/FuenteAlamo_25830.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_TBMAXH</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk base maximimum height, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.200</Value>
+        <MaximumValue>1.500</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_TBMINH</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk base minimimum height, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.010</Value>
+        <MaximumValue>0.200</MaximumValue>
+        <MinimumValue>0.005</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_TBRFGSD</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk base raster filter gsd, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.010</Value>
+        <MaximumValue>0.800</MaximumValue>
+        <MinimumValue>0.005</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_TBRFMINPIXS</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Minimum area for trunk base expresed as the number of pixels of filter raster file</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>3</Value>
+        <MaximumValue>20</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_THMAXH</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk higher maximimum height, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.200</Value>
+        <MaximumValue>5.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_THMINH</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk higher minimimum height, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.300</Value>
+        <MaximumValue>2.000</MaximumValue>
+        <MinimumValue>0.005</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing plants without leaves</Command>
+        <Code>PLPPC_PP_PWOL_THRFGSD</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Trunk higher raster filter gsd, in meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.400</Value>
+        <MaximumValue>2.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing</Command>
+        <Code>PLPPC_PP_PointCloudFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Point cloud file (LAS/LAZ)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220426_Tarazona_Vid_A6000/input_data/20220426_Tarazona_vid_hElip.laz</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Automatic vines detection using a geometric approach: 1. Preprocessing</Command>
+        <Code>PLPPC_PP_ROIShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Region of interest shapefile (SHP)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20220426_Tarazona_Vid_A6000/input_data/roi_25830.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_BandsToUse</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Bands to use, starting in 1, and separated by ; character</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1;2;4;5;6</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_FactorToReflectance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Multiplicative factor to convert raster values in multispectral orthomosaic to reflectance (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.000030518</Value>
+        <MaximumValue>100000.000000000</MaximumValue>
+        <MinimumValue>0.000000000</MinimumValue>
+        <PrintPrecision>9</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_InputShapeFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Input shapefile (SHP) with polygons of ROIs</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20240709_SoilZoningBaseReflectivity/Limites_parcela_Hotel.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_MaximumNumberOfClustersForKmeans</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Number of maximum clusters for kmeans</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>5</Value>
+        <MaximumValue>50</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_MinimumClassifiedArea</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum classified area, in square meters</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>5.00</Value>
+        <MaximumValue>10000.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_MinimumExplainedVariance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum explained variance from selected principal components, in percentage</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>80.0</Value>
+        <MaximumValue>100.0</MaximumValue>
+        <MinimumValue>0.0</MinimumValue>
+        <PrintPrecision>1</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_NirBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Nir band position in multispectral orthomosaic (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_Orthomosaic</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Input multispectral orthomosaic (GeoTIFF)</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20240709_SoilZoningBaseReflectivity/OrtoSeleccion_recortada.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_OrthomosaicNoDataValue</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Orthomosaic no data value, if not defined in GeoTIFF file</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>65535</Value>
+        <MaximumValue>65535</MaximumValue>
+        <MinimumValue>-65535</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_OutputPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Output path or empty for multispectral orthomosaic path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value></Value>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_RedBandPosition</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Red band position in multispectral orthomosaic (starting 1)</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>1</Value>
+        <MaximumValue>12</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_SoilMaximumNDVI</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Soil maximum NDVI (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.15</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>-10.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_SoilMinimumNDVI</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Soil minimum NDVI (per unit)</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>-1.00</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>-10.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Soil zoning based on bare soil reflectivity</Command>
+        <Code>SZBR_UseOnlyOnePrincipalComponent</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Use only one principal component</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>True;False</ValueList>
+        <Value>True</Value>
+    </Parameter>
+</ParametersManager>

@@ -1,0 +1,323 @@
+{
+    "name": "Crop water stress using CWSI",
+    "contributions": {
+        "methodology": [
+            "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es",
+            "Rocío Ballesteros González, rocio.ballesteros@uclm.es"
+        ],
+        "software": [
+            "David Hernández López, david.hernandez@uclm.es",
+            "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es"
+        ]
+    },
+    "src": "e:\\dev\\python\\qgis_plugins\\qpafyctools\\processes\\uclm\\src\\process_crop_water_stress_using_cwsi.py",
+    "description": "A process to ...",
+    "doc": "e:\\dev\\python\\qgis_plugins\\qpafyctools\\processes\\uclm\\doc\\process_crop_water_stress_using_cwsi.pdf",
+    "parameters": [
+        {
+            "label": "Air temperature",
+            "argparser": "temperature",
+            "description": "Air temperature",
+            "mandatory": true,
+            "value": 25.6,
+            "type": "physical_quantity",
+            "ui_unit": "celsius",
+            "computation_unit": "celsius",
+            "domain": [
+                -30.0,
+                80.0
+            ],
+            "output_format": "{:10.2f}",
+            "output_format_unit": "{:~P}",
+            "ignored_units": [
+                "planck_temperature",
+                "atomic_unit_of_temperature"
+            ]
+        },
+        {
+            "label": "Date",
+            "argparser": "date",
+            "description": "A valid date in selected format or empty when read from tag in thermal orthomosaic file name",
+            "mandatory": false,
+            "value": "20250624",
+            "type": "date",
+            "date_format": "%Y%m%d",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Date format",
+            "argparser": "date_format",
+            "description": "A valid date format for datetime.strptime python function",
+            "mandatory": true,
+            "value": "%Y%m%d",
+            "type": "string",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Date from input raster file",
+            "argparser": "date_from_input_raster_file",
+            "description": "Read date from tag in thermal orthomosaic file name",
+            "mandatory": true,
+            "value": true,
+            "type": "boolean",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Vector layer",
+            "argparser": "vector_layer",
+            "description": "Input and output vector layer",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/Shape_cepas_clipped.shp",
+                "layer_name": "Shape_cepas_clipped",
+                "layer_geometry_type": [
+                    "polygon",
+                    "multipolygon",
+                    "polygon_m",
+                    "multipolygon_m",
+                    "polygon_zm",
+                    "multipolygon_zm",
+                    "polygon_25d",
+                    "multipolygon_25d"
+                ]
+            },
+            "type": "vector_layer",
+            "file_mode": "append",
+            "domain": [
+                ".gpkg",
+                ".shp"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Vector layer enabled field name",
+            "argparser": "vector_layer_enabled_field",
+            "description": "Vector layer enabled field name, must be a field of the input and output vector layer",
+            "mandatory": false,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/Shape_cepas_clipped.shp",
+                "layer_name": "Shape_cepas_clipped",
+                "layer_geometry_type": [
+                    "polygon",
+                    "multipolygon",
+                    "polygon_m",
+                    "multipolygon_m",
+                    "polygon_zm",
+                    "multipolygon_zm",
+                    "polygon_25d",
+                    "multipolygon_25d"
+                ],
+                "field_name": "enabled"
+            },
+            "type": "vector_layer_field_name",
+            "file_mode": "read",
+            "domain": [
+                ".gpkg",
+                ".shp"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Lower base line coeficient a",
+            "argparser": "lower_line_coef_a",
+            "description": "Lower base line coeficient a, line slope (adimensional)",
+            "mandatory": true,
+            "value": -2.0168,
+            "type": "real",
+            "domain": [
+                -1000.0,
+                1000.0
+            ],
+            "output_format": "{:12.4e}"
+        },
+        {
+            "label": "Lower base line coeficient b",
+            "argparser": "lower_line_coef_b",
+            "description": "Lower base line coeficient b, value of y when x=0 (celsius degrees)",
+            "mandatory": true,
+            "value": 2.702,
+            "type": "real",
+            "domain": [
+                -100.0,
+                100.0
+            ],
+            "output_format": "{:10.3f}"
+        },
+        {
+            "label": "Percentile maximum value",
+            "argparser": "percentile_maximum_threshold",
+            "description": "Maximum value for percentile segmentation (percentage)",
+            "mandatory": false,
+            "value": 20.0,
+            "type": "real",
+            "domain": [
+                0.0,
+                100.0
+            ],
+            "output_format": "{:10.2f}"
+        },
+        {
+            "label": "Number of clusters for kmeans",
+            "argparser": "kmeans_clusters",
+            "description": "Number of clusters for kmeans, lower is canopy",
+            "mandatory": false,
+            "value": 3,
+            "type": "integer",
+            "domain": [
+                2,
+                50
+            ],
+            "output_format": "{:10d}"
+        },
+        {
+            "label": "Output cswi suffix",
+            "argparser": "output_cswi_suffix",
+            "description": "Output field name suffix for cswi, maximum of three characters for output shapefile",
+            "mandatory": true,
+            "value": "_cswi_mean",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output minimum cswi suffix",
+            "argparser": "output_min_cswi_suffix",
+            "description": "Output field name suffix for minimum cswi, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_cswi_min",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output maximum cswi suffix",
+            "argparser": "output_max_cswi_suffix",
+            "description": "Output field name suffix for maximum cswi, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_cswi_max",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output mean temperature suffix",
+            "argparser": "output_mean_temperature_suffix",
+            "description": "Output field name suffix for mean temperature, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_temp_mean",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output std temperature suffix",
+            "argparser": "output_std_temperature_suffix",
+            "description": "Output field name suffix for temperature standard deviation, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_temp_std",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output values of temperature suffix",
+            "argparser": "output_nvs_temperature_suffix",
+            "description": "Output field name suffix for number of valid values of temperature, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_temp_nvs",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Relative humidity",
+            "argparser": "relative_humidity",
+            "description": "Relative humidity",
+            "mandatory": true,
+            "value": 30.0,
+            "domain": [
+                0.0,
+                100.0
+            ],
+            "type": "physical_quantity",
+            "ui_unit": "percentage",
+            "computation_unit": "percentage",
+            "output_format": "{:10.2f}",
+            "output_format_unit": "{:~P}"
+        },
+        {
+            "label": "Segmentation method",
+            "argparser": "segmentation_method",
+            "description": "Segmentation method: kmeans or percentile",
+            "mandatory": true,
+            "value": "kmeans",
+            "type": "string",
+            "domain": [
+                "kmeans",
+                "percentile"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer",
+            "argparser": "raster_layer",
+            "description": "Raster layer used as input thermal data, converted to thermal unit using: scale * ND + offset",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CWSI_TH/ORT_FTA_Tarazona_P001_20230825_4258_5782_66_mm_clipped.tif",
+                "layer_index": 1,
+                "scale": 0.01,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Date tag index in input raster file name",
+            "argparser": "input_raster_file_date_string_position",
+            "description": "Date tag index in input raster file name",
+            "mandatory": false,
+            "value": 5,
+            "type": "integer",
+            "domain": [
+                1,
+                10
+            ],
+            "output_format": "{:10d}"
+        },
+        {
+            "label": "Tags string separator in input raster file name",
+            "argparser": "input_raster_file_tags_string_separator",
+            "description": "Tags string separator in input raster file name",
+            "mandatory": false,
+            "value": "_",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Upper base line coeficient a",
+            "argparser": "upper_line_coef_a",
+            "description": "Upper base line coeficient a, line slope (adimensional)",
+            "mandatory": true,
+            "value": 0.221,
+            "type": "real",
+            "domain": [
+                -1000.0,
+                1000.0
+            ],
+            "output_format": "{:12.4e}"
+        },
+        {
+            "label": "Upper base line coeficient b",
+            "argparser": "upper_line_coef_b",
+            "description": "Upper base line coeficient b, value of y when x=0 (celsius degrees)",
+            "mandatory": true,
+            "value": 6.671,
+            "type": "real",
+            "domain": [
+                -100.0,
+                100.0
+            ],
+            "output_format": "{:10.3f}"
+        }
+    ]
+}

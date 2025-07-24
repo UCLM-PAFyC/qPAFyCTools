@@ -1,0 +1,645 @@
+<!DOCTYPE ParametersManager>
+<ParametersManager version="1.1">
+    <Parameter>
+        <Command>Compute Crops Bounding Box</Command>
+        <Code>CCBB_DtmRasterFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Digital terrain model in raster format for estimate ground altitude</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/Austria_20250307_VY2_PC_dtm_10cm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Compute Crops Bounding Box</Command>
+        <Code>CCBB_LenghtInLineDirection</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Distance from vine to bounding edge in line direction, 0 for half distance between adjoining vines</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.50</Value>
+        <MaximumValue>5.00</MaximumValue>
+        <MinimumValue>0.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Compute Crops Bounding Box</Command>
+        <Code>CCBB_LenghtInOrthogonalToLineDirection</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Distance from vine to bounding edge in orthogonal to line direction</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.00</Value>
+        <MaximumValue>4.00</MaximumValue>
+        <MinimumValue>0.05</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Compute Crops Bounding Box</Command>
+        <Code>CCBB_ProcessOnlyEnabledCrops</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Process only enabled crops</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Compute Crops Bounding Box</Command>
+        <Code>CCBB_cropMaximumHeight</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Crop maximum height used for compute bounding box with DTM</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.50</Value>
+        <MaximumValue>50.00</MaximumValue>
+        <MinimumValue>0.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Management Project</Command>
+        <Code>CCMPRJ_Shapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Shapefile of crops, point type, with id unique integer field and line integer field</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/vines_centroids.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Management Project</Command>
+        <Code>CCMPRJ_Shapefile_EPSG</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>EPSG code of crops shapefiles CRS, -1 try to read from shapefile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>-1</Value>
+        <MaximumValue>1000000</MaximumValue>
+        <MinimumValue>-1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_ApproximateDistanceBetweenLines</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Approximate distance between lines</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>3.00</Value>
+        <MaximumValue>8.00</MaximumValue>
+        <MinimumValue>1.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_AzimuthToleranceInLine</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Degrees of azimuth tolerance in line</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>10.00</Value>
+        <MaximumValue>25.00</MaximumValue>
+        <MinimumValue>0.50</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_LineLengtheningToJoinLines</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Line lengthening in first joining lines</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>5.00</Value>
+        <MaximumValue>500.00</MaximumValue>
+        <MinimumValue>3.00</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_LineWidthToJoinLines</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Line width to join lines</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.10</Value>
+        <MaximumValue>2.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_LinesRansacAdjustmentTolerance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Tolerance for lines adjustment in RANSAC processes</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.80</Value>
+        <MaximumValue>5.00</MaximumValue>
+        <MinimumValue>0.05</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_MaximumDistancePlantToLine</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Maximum distance to join a plant to a line</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>150.00</Value>
+        <MaximumValue>500.00</MaximumValue>
+        <MinimumValue>1.50</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_MaximumOrthogonalDistanceToLineIsolatedPlants</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Maximum orthogonal distance to plant line for isolated plants</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.20</Value>
+        <MaximumValue>1.00</MaximumValue>
+        <MinimumValue>0.01</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_MaximumPlantsDistanceInLine</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Maximum distance between plants in line direction</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.80</Value>
+        <MaximumValue>4.00</MaximumValue>
+        <MinimumValue>0.20</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_MinimumDistanceToGroupPlants</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum distance to group plants</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.50</Value>
+        <MaximumValue>4.00</MaximumValue>
+        <MinimumValue>0.05</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_MinimumPlantsDistanceInLine</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum distance between plants in line direction</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.70</Value>
+        <MaximumValue>4.00</MaximumValue>
+        <MinimumValue>0.20</MinimumValue>
+        <PrintPrecision>2</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_OutputCropsShapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output crops shapefile</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/vines_centroids.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_PlantsShapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Shapefile of plants, polygon type, with id unique integer field and enabled integer field</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/vines_trunk_contours.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_PlantsTrunksShapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Shapefile of plants trunks, polygon type, with id unique integer field and enabled integer field</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/vines_trunk_contours.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_ProcessOnlyEnabledCrops</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Process only enabled crops</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_ReportFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>SaveFile</Type>
+        <Description>Output report file</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/PAFyCToolsGui/20250321_Austria/VY2/Bundle_Vine_detection/CreateCropsShapefileProcess_report.txt</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_Shapefiles_EPSG</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>EPSG code of crops shapefiles CRS, -1 try to read from shapefile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>-1</Value>
+        <MaximumValue>1000000</MaximumValue>
+        <MinimumValue>-1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Create Crops Shapefile</Command>
+        <Code>CCSHP_UseOnlyTrunkContoursShapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Use only plants trunk contours shapefile, and ignore shapefile of plants</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_ArmsTrunkImagesMinimumAngle</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum angle (DEG) in images between trunk and arms</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>sexagesimal degrees (DEG)</Unit>
+        <Value>45.00000000</Value>
+        <MaximumValue>80.00000000</MaximumValue>
+        <MinimumValue>10.00000000</MinimumValue>
+        <PrintPrecision>8</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_ComputeVolume</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Compute volume</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_DsmRasterFile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>DSM raster file, same CRS as project and with no data value.</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/QGisPAFyCTooolsProjects/20220426_Tarazona_Vid_A6000/data/20220426_Tarazona_vid_hElip_dtm_50cm.tif</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_ImagesFootprintBufferDistance</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Images footprint buffer distance to check points within images</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>1.000</Value>
+        <MaximumValue>200.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_LowerCropHeight</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Lower crop height</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>-0.300</Value>
+        <MaximumValue>200.000</MaximumValue>
+        <MinimumValue>-0.500</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_MinimumSideSmallestObjectInImage</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Minimum side of the smallest object in image</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.400</Value>
+        <MaximumValue>200.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_MultiProcess</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Use multi process</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>false</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_OutputPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Output path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/QGisPAFyCTooolsProjects/20220426_Tarazona_Vid_A6000/output_20230331</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_ProcessOnlyEnabledCrops</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Process only enabled crops</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_ProcessOnlyEnabledImages</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Process only enabled images</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_SunAzimuth</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Sun azimuth (DEG), no date/time in images</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>sexagesimal degrees (DEG)</Unit>
+        <Value>121.00000000</Value>
+        <MaximumValue>359.00000000</MaximumValue>
+        <MinimumValue>0.00000000</MinimumValue>
+        <PrintPrecision>8</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_SunElevation</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Sun elevation (DEG), no date/time in images</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>sexagesimal degrees (DEG)</Unit>
+        <Value>39.50000000</Value>
+        <MaximumValue>89.00000000</MaximumValue>
+        <MinimumValue>0.00000000</MinimumValue>
+        <PrintPrecision>8</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_TopCropHeight</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Top crop height</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>meters</Unit>
+        <Value>0.800</Value>
+        <MaximumValue>200.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Get images footprints from crops</Command>
+        <Code>GIFC_TrunkArmsRatioValidChange</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Double precision number</Type>
+        <Description>Valid change in ratio trunk and arms length, in object and image space</Description>
+        <PrintSize>20</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>0.250</Value>
+        <MaximumValue>1.000</MaximumValue>
+        <MinimumValue>0.010</MinimumValue>
+        <PrintPrecision>3</PrintPrecision>
+    </Parameter>
+    <Parameter>
+        <Command>Import shapefile</Command>
+        <Code>IMP_SHP_Shapefile</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>File</Type>
+        <Description>Shapefile to import</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/Proyectos_QGis_PAFyCTools/FuenteAlamo/data/GeolocalizacionCepas20200306_dhl.shp</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Import shapefile</Command>
+        <Code>IMP_SHP_Shapefile_EPSG</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>EPSG code of Shapefile's CRS, -1 try to read from shapefile</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>25830</Value>
+        <MaximumValue>1000000</MaximumValue>
+        <MinimumValue>-1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Import shapefile</Command>
+        <Code>IMP_SHP_TableName</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Name for target table, or empty for use shapefile basename</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>crops</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Import shapefile</Command>
+        <Code>IMP_SHP_Target_EPSG</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>EPSG code for target layer</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>25830</Value>
+        <MaximumValue>1000000</MaximumValue>
+        <MinimumValue>-1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_DockerExecutableFilePath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Docker executable file path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>C:/Program Files/Docker/Docker/resources/bin</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_DockerSharedFolderBasePath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Text</Type>
+        <Description>Docker shared folder base path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>/home</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_DockerSharedFolderBasePathWindows</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Docker shared folder base path windows</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/GDALCubesProjects</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_GdalCubesFormatFilesPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>GdalCubes format files path of R installation</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>C:/Users/dhernand/Documents/R/win-library/4.0/gdalcubes/formats</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_OutputPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Output path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/GDALCubesProjects/AmalTunez/gdalcubes/s1_vh/output_20220503_export_amal</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_ProcessingCores</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Integer number</Type>
+        <Description>Number of processing cores</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>8</Value>
+        <MaximumValue>16</MaximumValue>
+        <MinimumValue>1</MinimumValue>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_RPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>R path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>C:/Program Files/R/R-4.0.3/bin/x64</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_TempPath</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Path</Type>
+        <Description>Temp path</Description>
+        <PrintSize>200</PrintSize>
+        <Unit>adimensional</Unit>
+        <Value>D:/GDALCubesProjects/AmalTunez/gdalcubes/s1_vh/temp_20220503_export_amal</Value>
+    </Parameter>
+    <Parameter>
+        <Command>Nested Grid Data Cubes Processes</Command>
+        <Code>NGDCP_UseDocker</Code>
+        <Enabled>Yes</Enabled>
+        <Tag></Tag>
+        <Type>Value list</Type>
+        <Description>Use docker, false for use R</Description>
+        <PrintSize>10</PrintSize>
+        <Unit>adimensional</Unit>
+        <ValueList>true;false</ValueList>
+        <Value>true</Value>
+    </Parameter>
+</ParametersManager>

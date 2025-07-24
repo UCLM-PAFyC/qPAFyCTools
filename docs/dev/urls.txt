@@ -1,0 +1,6 @@
+String to function:
+https://saturncloud.io/blog/pythonnumpyscipy-converting-string-to-mathematical-function/
+
+units
+https://docs.sympy.org/latest/modules/physics/units/index.html
+

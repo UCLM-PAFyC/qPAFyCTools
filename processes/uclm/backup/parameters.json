@@ -1,0 +1,21 @@
+{
+    "parameters": [
+        {
+            "label": "Input vector layer identifier field name",
+            "argparser": "input_vector_layer_id_field",
+            "description": "Input vector layer identifier field name",
+            "value": {
+                "file_path": "D:/PAFyCToolsGui/20230825_Tarazona_Thermal_CWSI/input/Shape_cepas.shp",
+                "layer_name": "Shape_cepas",
+                "field_name": "field_2"
+            },
+            "type": "vector_layer_field_name",
+            "file_mode": "read",
+            "domain": [
+                ".gpkg",
+                ".shp"
+            ],
+            "output_format": "{:s}"
+        },
+    ]
+}
