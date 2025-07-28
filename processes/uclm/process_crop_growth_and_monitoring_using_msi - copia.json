@@ -1,0 +1,333 @@
+{
+    "name": "Crop growth and monitoring using multiespectral information",
+    "contributions": {
+        "methodology": [
+            "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es",
+            "Rocío Ballesteros González, rocio.ballesteros@uclm.es"
+        ],
+        "software": [
+            "David Hernández López, david.hernandez@uclm.es",
+            "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es"
+        ]
+    },
+    "src": "E:/dev/python/qgis_plugins/PAFyCTools/processes/uclm/src/process_crop_growth_and_monitoring_using_msi.py",
+    "description": "A process to ...",
+    "doc": "e:\\dev\\python\\qgis_plugins\\pafyctools\\processes\\uclm\\doc\\process_crop_growth_and_monitoring_using_msi.pdf",
+    "parameters": [
+        {
+            "label": "Shadows maximum reflectance (RGB)",
+            "argparser": "shadows_maximum_reflectance",
+            "description": "shadows maximum reflectance (RGB) (per unit)",
+            "mandatory": true,
+            "value": 0.08,
+            "type": "real",
+            "domain": [
+                0.01,
+                1.0
+            ],
+            "output_format": "{:10.2f}"
+        },
+        {
+            "label": "Crops minimum height",
+            "argparser": "crops_minimum_height",
+            "description": "Crops minimum Heights, in meters, 0 for ignore",
+            "mandatory": true,
+            "value": 0.2,
+            "type": "real",
+            "domain": [
+                0.0,
+                10.0
+            ],
+            "output_format": "{:10.2f}"
+        },
+        {
+            "label": "Crops minimum NDVI",
+            "argparser": "crops_minimum_ndvi",
+            "description": "Crops minimum NDVI (per unit)",
+            "mandatory": true,
+            "value": 0.5,
+            "type": "real",
+            "domain": [
+                0.01,
+                1.0
+            ],
+            "output_format": "{:10.2f}"
+        },
+        {
+            "label": "Date",
+            "argparser": "date",
+            "description": "A valid date in selected format or empty when read from tag in thermal orthomosaic file name",
+            "mandatory": false,
+            "value": "20250624",
+            "type": "date",
+            "date_format": "%Y%m%d",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Date format",
+            "argparser": "date_format",
+            "description": "A valid date format for datetime.strptime python function",
+            "mandatory": true,
+            "value": "%Y%m%d",
+            "type": "string",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Date from input raster file",
+            "argparser": "date_from_input_raster_file",
+            "description": "Read date from tag in thermal orthomosaic file name",
+            "mandatory": true,
+            "value": true,
+            "type": "boolean",
+            "output_format": "{:>10s}"
+        },
+        {
+            "label": "Percentile minimum value",
+            "argparser": "percentile_minimum_threshold",
+            "description": "Minimum value for percentile segmentation (percentage)",
+            "mandatory": false,
+            "value": 20.0,
+            "type": "real",
+            "domain": [
+                0.0,
+                100.0
+            ],
+            "output_format": "{:10.2f}"
+        },
+        {
+            "label": "Number of clusters for kmeans",
+            "argparser": "kmeans_clusters",
+            "description": "Number of clusters for kmeans, lower is canopy",
+            "mandatory": false,
+            "value": 6,
+            "type": "integer",
+            "domain": [
+                2,
+                50
+            ],
+            "output_format": "{:10d}"
+        },
+        {
+            "label": "Output plant healthy",
+            "argparser": "output_plant_healthy_suffix",
+            "description": "Output field name suffix for plant healthy, maximum of three characters for output shapefile",
+            "mandatory": true,
+            "value": "_healthy",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Output plant ndvi",
+            "argparser": "output_plant_ndvi_suffix",
+            "description": "Output field name suffix for plant ndvi, maximum of three characters for output shapefile",
+            "mandatory": false,
+            "value": "_ndvi",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer DSM",
+            "argparser": "raster_layer_dsm_band",
+            "description": "Raster layer digital surface model, needed for use crops minimimum heigth, converted to meters using: scale * ND + offset",
+            "mandatory": false,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/DSM-303-RFL-Tarazona_Vid_20230804_25830_3.5cm.tif",
+                "layer_index": 1,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer DTM",
+            "argparser": "raster_layer_dtm_band",
+            "description": "Raster layer digital terrain model, needed for use crops minimimum heigth, converted to meters using: scale * ND + offset",
+            "mandatory": false,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/DTM-303-RFL-Tarazona_Vid_20230804_25830_3.5cm.tif",
+                "layer_index": 1,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer blue band",
+            "argparser": "raster_layer_blue_band",
+            "description": "Raster layer used as input blue band, converted to reflectance using: scale * ND + offset",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/ORT-303-RFL-Tarazona_Vid_20230804_25830_3.5cm_clipped.tif",
+                "layer_index": 1,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer green band",
+            "argparser": "raster_layer_green_band",
+            "description": "Raster layer used as input green band, converted to reflectance using: scale * ND + offset",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/ORT-303-RFL-Tarazona_Vid_20230804_25830_3.5cm_clipped.tif",
+                "layer_index": 2,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer red band",
+            "argparser": "raster_layer_red_band",
+            "description": "Raster layer used as input red band, converted to reflectance using: scale * ND + offset",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/ORT-303-RFL-Tarazona_Vid_20230804_25830_3.5cm_clipped.tif",
+                "layer_index": 3,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Raster layer nir band",
+            "argparser": "raster_layer_nir_band",
+            "description": "Raster layer used as input nir band, converted to reflectance using: scale * ND + offset",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CGDM_MS/ORT-303-RFL-Tarazona_Vid_20230804_25830_3.5cm_clipped.tif",
+                "layer_index": 5,
+                "scale": 1.0,
+                "offset": 0.0
+            },
+            "type": "raster_layer",
+            "file_mode": "read",
+            "domain": [
+                ".tif",
+                ".tiff"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Date tag index in input raster file name",
+            "argparser": "input_raster_file_date_string_position",
+            "description": "Date tag index in input raster file name",
+            "mandatory": false,
+            "value": 3,
+            "type": "integer",
+            "domain": [
+                1,
+                10
+            ],
+            "output_format": "{:10d}"
+        },
+        {
+            "label": "Segmentation method",
+            "argparser": "segmentation_method",
+            "description": "Segmentation method: kmeans or percentile",
+            "mandatory": true,
+            "value": "kmeans",
+            "type": "string",
+            "domain": [
+                "kmeans",
+                "percentile"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Tags string separator in input raster file name",
+            "argparser": "input_raster_file_tags_string_separator",
+            "description": "Tags string separator in input raster file name",
+            "mandatory": false,
+            "value": "_",
+            "type": "string",
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Vector layer",
+            "argparser": "vector_layer",
+            "description": "Input and output vector layer",
+            "mandatory": true,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
+                "layer_name": "cepas_clipped",
+                "layer_geometry_type": [
+                    "polygon",
+                    "multipolygon",
+                    "polygon_m",
+                    "multipolygon_m",
+                    "polygon_zm",
+                    "multipolygon_zm",
+                    "polygon_25d",
+                    "multipolygon_25d"
+                ]
+            },
+            "type": "vector_layer",
+            "file_mode": "append",
+            "domain": [
+                ".gpkg",
+                ".shp"
+            ],
+            "output_format": "{:s}"
+        },
+        {
+            "label": "Vector layer enabled field name",
+            "argparser": "vector_layer_enabled_field",
+            "description": "Vector layer enabled field name, must be a field of the input and output vector layer",
+            "mandatory": false,
+            "value": {
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
+                "layer_name": "cepas_clipped",
+                "layer_geometry_type": [
+                    "polygon",
+                    "multipolygon",
+                    "polygon_m",
+                    "multipolygon_m",
+                    "polygon_zm",
+                    "multipolygon_zm",
+                    "polygon_25d",
+                    "multipolygon_25d"
+                ],
+                "field_name": "enabled"
+            },
+            "type": "vector_layer_field_name",
+            "file_mode": "read",
+            "domain": [
+                ".gpkg",
+                ".shp"
+            ],
+            "output_format": "{:s}"
+        }
+    ]
+}

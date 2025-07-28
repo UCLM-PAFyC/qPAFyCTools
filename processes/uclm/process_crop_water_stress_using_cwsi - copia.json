@@ -10,9 +10,9 @@
             "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es"
         ]
     },
-    "src": "e:\\dev\\python\\qgis_plugins\\qpafyctools\\processes\\uclm\\src\\process_crop_water_stress_using_cwsi.py",
+    "src": "E:/dev/python/qgis_plugins/PAFyCTools/processes/uclm/src/process_crop_water_stress_using_cwsi.py",
     "description": "A process to ...",
-    "doc": "e:\\dev\\python\\qgis_plugins\\qpafyctools\\processes\\uclm\\doc\\process_crop_water_stress_using_cwsi.pdf",
+    "doc": "e:\\dev\\python\\qgis_plugins\\pafyctools\\processes\\uclm\\doc\\process_crop_growth_and_monitoring_using_msi.pdf",
     "parameters": [
         {
             "label": "Air temperature",
@@ -68,8 +68,8 @@
             "description": "Input and output vector layer",
             "mandatory": true,
             "value": {
-                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/Shape_cepas_clipped.shp",
-                "layer_name": "Shape_cepas_clipped",
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
+                "layer_name": "cepas_clipped",
                 "layer_geometry_type": [
                     "polygon",
                     "multipolygon",
@@ -95,8 +95,8 @@
             "description": "Vector layer enabled field name, must be a field of the input and output vector layer",
             "mandatory": false,
             "value": {
-                "file_path": "D:/qPAFyCToolsProjects/tarazona/input/Shape_cepas_clipped.shp",
-                "layer_name": "Shape_cepas_clipped",
+                "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
+                "layer_name": "cepas_clipped",
                 "layer_geometry_type": [
                     "polygon",
                     "multipolygon",
@@ -174,7 +174,7 @@
             "argparser": "output_cswi_suffix",
             "description": "Output field name suffix for cswi, maximum of three characters for output shapefile",
             "mandatory": true,
-            "value": "_c",
+            "value": "_cswi_mean",
             "type": "string",
             "output_format": "{:s}"
         },
@@ -183,7 +183,7 @@
             "argparser": "output_min_cswi_suffix",
             "description": "Output field name suffix for minimum cswi, maximum of three characters for output shapefile",
             "mandatory": false,
-            "value": "_cn",
+            "value": "_cswi_min",
             "type": "string",
             "output_format": "{:s}"
         },
@@ -192,7 +192,7 @@
             "argparser": "output_max_cswi_suffix",
             "description": "Output field name suffix for maximum cswi, maximum of three characters for output shapefile",
             "mandatory": false,
-            "value": "_cx",
+            "value": "_cswi_max",
             "type": "string",
             "output_format": "{:s}"
         },
@@ -201,7 +201,7 @@
             "argparser": "output_mean_temperature_suffix",
             "description": "Output field name suffix for mean temperature, maximum of three characters for output shapefile",
             "mandatory": false,
-            "value": "_tm",
+            "value": "_temp_mean",
             "type": "string",
             "output_format": "{:s}"
         },
@@ -210,7 +210,7 @@
             "argparser": "output_std_temperature_suffix",
             "description": "Output field name suffix for temperature standard deviation, maximum of three characters for output shapefile",
             "mandatory": false,
-            "value": "_ts",
+            "value": "_temp_std",
             "type": "string",
             "output_format": "{:s}"
         },
@@ -219,7 +219,7 @@
             "argparser": "output_nvs_temperature_suffix",
             "description": "Output field name suffix for number of valid values of temperature, maximum of three characters for output shapefile",
             "mandatory": false,
-            "value": "_nv",
+            "value": "_temp_nvs",
             "type": "string",
             "output_format": "{:s}"
         },

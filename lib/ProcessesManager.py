@@ -22,6 +22,7 @@ sys.path.append(common_libs_absolute_path)
 
 from pyLibParameters import defs_pars
 from pyLibParameters.ParametersManager import ParametersManager
+from pyLibQtTools import Tools
 
 class ProcessesManager:
     def __init__(self):
@@ -143,6 +144,10 @@ class ProcessesManager:
         process_parameters_manager = ParametersManager()
         str_aux_error = process_parameters_manager.initialize(parameters_dictionary_list)
         if str_aux_error:
+            # str_error = ('ProcessesManager.load_process_file\n')
+            # str_error += ("\nIn process from file:\n{}".format(process_file))
+            # str_error += ('\nError:\n{}'.format(str_aux_error))
+            # Tools.error_msg(str_error)
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("No field {} in process from file:\n{}".
                           format(defs_processes.PROCESS_FIELD_PARAMETERS, process_file))
@@ -174,6 +179,16 @@ class ProcessesManager:
                         break
             else:
                 process_src_file = src_file_name
+        if not src_file_name:
+            str_error = ('ProcessesManager.load_process_file\n')
+            str_error += ("\nIn process from file:\n{}".format(process_file))
+            str_error += ('\nProcess source file is empty')
+            Tools.error_msg(str_error)
+        elif not os.path.exists(src_file_name):
+            str_error = ('ProcessesManager.load_process_file\n')
+            str_error += ("\nIn process from file:\n{}".format(process_file))
+            str_error += ('\nNot exists process source file:\n{}'.format(src_file_name))
+            Tools.error_msg(str_error)
         process_doc_file = ''
         if doc_file_name:
             if not os.path.exists(doc_file_name):
@@ -186,6 +201,16 @@ class ProcessesManager:
                         break
             else:
                 process_doc_file = doc_file_name
+        if not process_doc_file:
+            str_error = ('ProcessesManager.load_process_file\n')
+            str_error += ("\nIn process from file:\n{}".format(process_file))
+            str_error += ('\nDocumentation file is empty')
+            Tools.error_msg(str_error)
+        elif not os.path.exists(process_doc_file):
+            str_error = ('ProcessesManager.load_process_file\n')
+            str_error += ("\nIn process from file:\n{}".format(process_file))
+            str_error += ('\nNot exists documentation file:\n{}'.format(process_doc_file))
+            Tools.error_msg(str_error)
         process = {}
         process[defs_processes.PROCESS_FILE] = process_file
         process[defs_processes.PROCESS_FIELD_NAME] = process_name
@@ -210,6 +235,14 @@ class ProcessesManager:
             return str_error, arguments
         process = self.processes_by_provider[provider][name]
         process_src_file_path = process[defs_processes.PROCESS_FIELD_SRC]
+        if not process_src_file_path:
+            str_error = ('ProcessesManager.get_process_arguments\n')
+            str_error += ('Source file is not selected')
+            return str_error, arguments
+        if not os.path.exists(process_src_file_path):
+            str_error = ('ProcessesManager.get_process_arguments\n')
+            str_error += ('Not exists source file:\n{}'.format(process_src_file_path))
+            return str_error, arguments
         process_src_file_path = os.path.normcase(process_src_file_path)
         parametes_manager = process[defs_processes.PROCESS_FIELD_PARAMETERS]
         str_error, parameters_arguments = parametes_manager.get_process_arguments()
