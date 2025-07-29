@@ -19,6 +19,7 @@
             "argparser": "temperature",
             "description": "Air temperature",
             "mandatory": true,
+            "output": false,
             "value": 25.6,
             "type": "physical_quantity",
             "ui_unit": "celsius",
@@ -39,6 +40,7 @@
             "argparser": "date",
             "description": "A valid date in selected format or empty when read from tag in thermal orthomosaic file name",
             "mandatory": false,
+            "output": false,
             "value": "20250624",
             "type": "date",
             "date_format": "%Y%m%d",
@@ -49,6 +51,7 @@
             "argparser": "date_format",
             "description": "A valid date format for datetime.strptime python function",
             "mandatory": true,
+            "output": false,
             "value": "%Y%m%d",
             "type": "string",
             "output_format": "{:>10s}"
@@ -58,6 +61,7 @@
             "argparser": "date_from_input_raster_file",
             "description": "Read date from tag in thermal orthomosaic file name",
             "mandatory": true,
+            "output": false,
             "value": true,
             "type": "boolean",
             "output_format": "{:>10s}"
@@ -67,6 +71,7 @@
             "argparser": "vector_layer",
             "description": "Input and output vector layer",
             "mandatory": true,
+            "output": true,
             "value": {
                 "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
                 "layer_name": "cepas_clipped",
@@ -94,6 +99,7 @@
             "argparser": "vector_layer_enabled_field",
             "description": "Vector layer enabled field name, must be a field of the input and output vector layer",
             "mandatory": false,
+            "output": false,
             "value": {
                 "file_path": "D:/qPAFyCToolsProjects/tarazona/qPAFyCTools_tarazona_20250728.gpkg",
                 "layer_name": "cepas_clipped",
@@ -122,6 +128,7 @@
             "argparser": "lower_line_coef_a",
             "description": "Lower base line coeficient a, line slope (adimensional)",
             "mandatory": true,
+            "output": false,
             "value": -2.0168,
             "type": "real",
             "domain": [
@@ -135,6 +142,7 @@
             "argparser": "lower_line_coef_b",
             "description": "Lower base line coeficient b, value of y when x=0 (celsius degrees)",
             "mandatory": true,
+            "output": false,
             "value": 2.702,
             "type": "real",
             "domain": [
@@ -148,6 +156,7 @@
             "argparser": "percentile_maximum_threshold",
             "description": "Maximum value for percentile segmentation (percentage)",
             "mandatory": false,
+            "output": false,
             "value": 20.0,
             "type": "real",
             "domain": [
@@ -161,6 +170,7 @@
             "argparser": "kmeans_clusters",
             "description": "Number of clusters for kmeans, lower is canopy",
             "mandatory": false,
+            "output": false,
             "value": 3,
             "type": "integer",
             "domain": [
@@ -174,6 +184,7 @@
             "argparser": "output_cswi_suffix",
             "description": "Output field name suffix for cswi, maximum of three characters for output shapefile",
             "mandatory": true,
+            "output": true,
             "value": "_cswi_mean",
             "type": "string",
             "output_format": "{:s}"
@@ -183,6 +194,7 @@
             "argparser": "output_min_cswi_suffix",
             "description": "Output field name suffix for minimum cswi, maximum of three characters for output shapefile",
             "mandatory": false,
+            "output": true,
             "value": "_cswi_min",
             "type": "string",
             "output_format": "{:s}"
@@ -192,6 +204,7 @@
             "argparser": "output_max_cswi_suffix",
             "description": "Output field name suffix for maximum cswi, maximum of three characters for output shapefile",
             "mandatory": false,
+            "output": true,
             "value": "_cswi_max",
             "type": "string",
             "output_format": "{:s}"
@@ -201,6 +214,7 @@
             "argparser": "output_mean_temperature_suffix",
             "description": "Output field name suffix for mean temperature, maximum of three characters for output shapefile",
             "mandatory": false,
+            "output": true,
             "value": "_temp_mean",
             "type": "string",
             "output_format": "{:s}"
@@ -210,6 +224,7 @@
             "argparser": "output_std_temperature_suffix",
             "description": "Output field name suffix for temperature standard deviation, maximum of three characters for output shapefile",
             "mandatory": false,
+            "output": true,
             "value": "_temp_std",
             "type": "string",
             "output_format": "{:s}"
@@ -219,6 +234,7 @@
             "argparser": "output_nvs_temperature_suffix",
             "description": "Output field name suffix for number of valid values of temperature, maximum of three characters for output shapefile",
             "mandatory": false,
+            "output": true,
             "value": "_temp_nvs",
             "type": "string",
             "output_format": "{:s}"
@@ -228,6 +244,7 @@
             "argparser": "relative_humidity",
             "description": "Relative humidity",
             "mandatory": true,
+            "output": false,
             "value": 30.0,
             "domain": [
                 0.0,
@@ -244,6 +261,7 @@
             "argparser": "segmentation_method",
             "description": "Segmentation method: kmeans or percentile",
             "mandatory": true,
+            "output": false,
             "value": "kmeans",
             "type": "string",
             "domain": [
@@ -257,6 +275,7 @@
             "argparser": "raster_layer",
             "description": "Raster layer used as input thermal data, converted to thermal unit using: scale * ND + offset",
             "mandatory": true,
+            "output": false,
             "value": {
                 "file_path": "D:/qPAFyCToolsProjects/tarazona/input/CWSI_TH/ORT_FTA_Tarazona_P001_20230825_4258_5782_66_mm_clipped.tif",
                 "layer_index": 1,
@@ -276,6 +295,7 @@
             "argparser": "input_raster_file_date_string_position",
             "description": "Date tag index in input raster file name",
             "mandatory": false,
+            "output": false,
             "value": 5,
             "type": "integer",
             "domain": [
@@ -289,6 +309,7 @@
             "argparser": "input_raster_file_tags_string_separator",
             "description": "Tags string separator in input raster file name",
             "mandatory": false,
+            "output": false,
             "value": "_",
             "type": "string",
             "output_format": "{:s}"
@@ -298,6 +319,7 @@
             "argparser": "upper_line_coef_a",
             "description": "Upper base line coeficient a, line slope (adimensional)",
             "mandatory": true,
+            "output": false,
             "value": 0.221,
             "type": "real",
             "domain": [
@@ -311,6 +333,7 @@
             "argparser": "upper_line_coef_b",
             "description": "Upper base line coeficient b, value of y when x=0 (celsius degrees)",
             "mandatory": true,
+            "output": false,
             "value": 6.671,
             "type": "real",
             "domain": [
