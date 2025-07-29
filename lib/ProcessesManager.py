@@ -85,6 +85,7 @@ class ProcessesManager:
                           provider_processes_doc_path = '',
                           ):
         str_error = ''
+        need_save = False
         process = None
         try:
             with open(process_file, 'r') as file:
@@ -170,34 +171,50 @@ class ProcessesManager:
         process_src_file = ''
         if src_file_name:
             if not os.path.exists(src_file_name):
-                for file in processes_src_files:
+                src_file_basename = os.path.basename(src_file_name)
+                for file_basename in processes_src_files:
                     # file_base_name = pathlib.Path(file).stem
-                    file_name = os.path.basename(file)
-                    if file_name.casefold() == src_file_name.casefold():
-                        file_path = os.path.normcase(provider_processes_src_path + '/' + file)
+                    if file_basename.casefold() == src_file_basename.casefold():
+                        file_path = os.path.normcase(provider_processes_src_path + '/' + file_basename)
                         process_src_file = file_path
+                        need_save = True
                         break
             else:
                 process_src_file = src_file_name
-        if not src_file_name:
+        if not process_src_file:
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nProcess source file is empty')
             Tools.error_msg(str_error)
-        elif not os.path.exists(src_file_name):
+        elif not os.path.exists(process_src_file):
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nNot exists process source file:\n{}'.format(src_file_name))
             Tools.error_msg(str_error)
+            process_src_file = ''
+        if not process_src_file:
+            dialog_title = 'Select process source python file'
+            previous_file = None
+            previous_path = self.path
+            file_types = [defs_processes.PROCESSES_SRC_FILES_EXTENSION]
+            file_mode = defs_pars.FILE_MODE_READ
+            mandatory = True
+            str_error, process_src_file = Tools.get_file(dialog_title, previous_file, previous_path,
+                                                         file_types, file_mode,mandatory)
+            if str_error:
+                Tools.error_msg(str_error)
+                return str_error, process
+            need_save = True
         process_doc_file = ''
         if doc_file_name:
             if not os.path.exists(doc_file_name):
-                for file in processes_doc_files:
+                doc_file_basename = os.path.basename(doc_file_name)
+                for file_basename in processes_doc_files:
                     # file_base_name = pathlib.Path(file).stem
-                    file_name = os.path.basename(file)
-                    if file_name.casefold() == file_name.casefold():
-                        file_path = os.path.normcase(provider_processes_doc_path + '/' + file)
+                    if file_basename.casefold() == doc_file_basename.casefold():
+                        file_path = os.path.normcase(provider_processes_doc_path + '/' + file_basename)
                         process_doc_file = file_path
+                        need_save = True
                         break
             else:
                 process_doc_file = doc_file_name
@@ -211,6 +228,20 @@ class ProcessesManager:
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nNot exists documentation file:\n{}'.format(process_doc_file))
             Tools.error_msg(str_error)
+            process_doc_file = ''
+        if not process_doc_file:
+            dialog_title = 'Select process documentation pdf file'
+            previous_file = None
+            previous_path = self.path
+            file_types = [defs_processes.PROCESSES_DOC_FILES_EXTENSION]
+            file_mode = defs_pars.FILE_MODE_READ
+            mandatory = False
+            str_error, process_doc_file = Tools.get_file(dialog_title, previous_file, previous_path,
+                                                         file_types, file_mode,mandatory)
+            if str_error:
+                Tools.error_msg(str_error)
+                return str_error, process
+            need_save = True
         process = {}
         process[defs_processes.PROCESS_FILE] = process_file
         process[defs_processes.PROCESS_FIELD_NAME] = process_name
@@ -220,6 +251,18 @@ class ProcessesManager:
         # process[defs_processes.PROCESS_FILE] = process_file
         process[defs_processes.PROCESS_SRC] = process_src_file
         process[defs_processes.PROCESS_DOC] = process_doc_file
+        if need_save:
+            as_dict = {}
+            as_dict[defs_processes.PROCESS_FIELD_NAME] = process[defs_processes.PROCESS_FIELD_NAME]
+            as_dict[defs_processes.PROCESS_FIELD_CONTRIBUTIONS] = process[defs_processes.PROCESS_FIELD_CONTRIBUTIONS]
+            as_dict[defs_processes.PROCESS_FIELD_SRC] = process[defs_processes.PROCESS_FIELD_SRC]
+            as_dict[defs_processes.PROCESS_FIELD_DESCRIPTION] = process[defs_processes.PROCESS_FIELD_DESCRIPTION]
+            as_dict[defs_processes.PROCESS_FIELD_DOC] = process[defs_processes.PROCESS_DOC]
+            as_dict[defs_processes.PROCESS_FIELD_PARAMETERS] \
+                = process[defs_processes.PROCESS_FIELD_PARAMETERS].parameters_as_list_of_dict
+            json_object = json.dumps(as_dict, indent=4, ensure_ascii=False)
+            with open(process_file, "w") as outfile:
+                outfile.write(json_object)
         return str_error, process
 
     def get_process_arguments(self, provider, name):

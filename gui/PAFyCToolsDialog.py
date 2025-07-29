@@ -337,6 +337,11 @@ class PAFyCToolsDialog(QDialog):
         if str_error:
             Tools.error_msg(str_error)
             return
+        if self.qgis_iface:
+            str_error = self.qgis_iface.reload_all_layers()
+            if str_error:
+                Tools.error_msg(str_error)
+                return
         return
 
     def project_definition(self):

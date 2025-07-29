@@ -124,6 +124,11 @@ class QGisIFace:
         self.project = project
         self.load_project()
 
+    def reload_all_layers(self):
+        str_error = ''
+        QgsProject.instance().reloadAllLayers()
+        return str_error
+
     def set_map_canvas_from_wkb_geometry_in_project_crs(self,
                                                         wkb_geometry):
         str_error = ''

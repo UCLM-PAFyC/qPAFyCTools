@@ -10,9 +10,9 @@
             "Miguel Ángel Moreno Hidalgo, miguelangel.moreno@uclm.es"
         ]
     },
-    "src": "E:/dev/python/qgis_plugins/PAFyCTools/processes/uclm/src/process_crop_water_stress_using_cwsi.py",
+    "src": "e:\\dev\\python\\qgis_plugins\\pafyctools\\processes\\uclm\\src\\process_crop_water_stress_using_cwsi.py",
     "description": "A process to ...",
-    "doc": "e:\\dev\\python\\qgis_plugins\\pafyctools\\processes\\uclm\\doc\\process_crop_growth_and_monitoring_using_msi.pdf",
+    "doc": "E:/dev/python/qgis_plugins/PAFyCTools/processes/uclm/doc/process_crop_water_stress_using_cwsi.pdf",
     "parameters": [
         {
             "label": "Air temperature",
