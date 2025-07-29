@@ -56,6 +56,8 @@ PROCESESS_FIELD_DESCRIPTION = 'description'
 PROCESESS_FIELD_DATE_TIME = 'date_time'
 PROCESESS_FIELD_PROCESS_CONTENT = 'process_content'
 PROCESESS_FIELD_LOG = 'log'
+PROCESESS_FIELD_OUTPUT_UCLM = 'output_uclm'
+PROCESESS_FIELD_OUTPUT_UCO = 'output_uco'
 PROCESESS_FIELD_CONTENT_UCLM = 'content_uclm'
 PROCESESS_FIELD_CONTENT_UCO = 'content_uco'
 PROCESESS_FIELD_GEOMETRY = defs_gdal.LAYERS_GEOMETRY_TAG
@@ -66,6 +68,8 @@ fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_DESCRIPTION] = defs_gdal.t
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_DATE_TIME] = defs_gdal.type_by_name['string']
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_PROCESS_CONTENT] = defs_gdal.type_by_name['string']
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_LOG] = defs_gdal.type_by_name['string']
+fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_OUTPUT_UCLM] = defs_gdal.type_by_name['string']
+fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_OUTPUT_UCO] = defs_gdal.type_by_name['string']
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_CONTENT_UCLM] = defs_gdal.type_by_name['string']
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_CONTENT_UCO] = defs_gdal.type_by_name['string']
 fields_by_layer[PROCESESS_LAYER_NAME][PROCESESS_FIELD_GEOMETRY] = defs_gdal.geometry_type_by_name['none']
@@ -77,12 +81,16 @@ PROCESESS_FIELD_PROCESS_CONTENT_TAG = 'Process content'
 PROCESESS_FIELD_LOG_TAG = 'Log'
 PROCESESS_FIELD_CONTENT_UCLM_TAG = 'Content UCLM'
 PROCESESS_FIELD_CONTENT_UCO_TAG = 'Content UCO'
+PROCESESS_FIELD_OUTPUT_UCLM_TAG = 'Output UCLM'
+PROCESESS_FIELD_OUTPUT_UCO_TAG = 'Output UCO'
 PROCESESS_FIELD_LABEL_TOOLTIP = 'Label'
 PROCESESS_FIELD_AUTHOR_TOOLTIP = 'Author'
 PROCESESS_FIELD_DESCRIPTION_TOOLTIP = 'Description'
 PROCESESS_FIELD_DATE_TIME_TOOLTIP = 'Date and time'
 PROCESESS_FIELD_PROCESS_CONTENT_TOOLTIP = 'Process content'
 PROCESESS_FIELD_LOG_TOOLTIP = 'Log'
+PROCESESS_FIELD_OUTPUT_UCLM_TOOLTIP = 'Output UCLM'
+PROCESESS_FIELD_OUTPUT_UCO_TOOLTIP = 'Output UCO'
 PROCESESS_FIELD_CONTENT_UCLM_TOOLTIP = 'Content UCLM'
 PROCESESS_FIELD_CONTENT_UCO_TOOLTIP = 'Content UCO'
 project_processes_dialog_header=[PROCESESS_FIELD_LABEL_TAG,
@@ -91,6 +99,8 @@ project_processes_dialog_header=[PROCESESS_FIELD_LABEL_TAG,
                                  PROCESESS_FIELD_DATE_TIME_TAG,
                                  PROCESESS_FIELD_PROCESS_CONTENT_TAG,
                                  PROCESESS_FIELD_LOG_TAG,
+                                 PROCESESS_FIELD_OUTPUT_UCLM_TAG,
+                                 PROCESESS_FIELD_OUTPUT_UCO_TAG,
                                  PROCESESS_FIELD_CONTENT_UCLM_TAG,
                                  PROCESESS_FIELD_CONTENT_UCO_TAG]
 project_processes_dialog_field_by_header_tag = {}
@@ -100,6 +110,8 @@ project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_DESCRIPTION_TAG] = 
 project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_DATE_TIME_TAG] = PROCESESS_FIELD_DATE_TIME
 project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_PROCESS_CONTENT_TAG] = PROCESESS_FIELD_PROCESS_CONTENT
 project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_LOG_TAG] = PROCESESS_FIELD_LOG
+project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_OUTPUT_UCLM_TAG] = PROCESESS_FIELD_OUTPUT_UCLM
+project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_OUTPUT_UCO_TAG] = PROCESESS_FIELD_OUTPUT_UCO
 project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_CONTENT_UCLM_TAG] = PROCESESS_FIELD_CONTENT_UCLM
 project_processes_dialog_field_by_header_tag[PROCESESS_FIELD_CONTENT_UCO_TAG] = PROCESESS_FIELD_CONTENT_UCO
 project_processes_dialog_tooltip_by_header_tag = {}
@@ -109,6 +121,8 @@ project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_DESCRIPTION_TAG] 
 project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_DATE_TIME_TAG] = PROCESESS_FIELD_DATE_TIME_TOOLTIP
 project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_PROCESS_CONTENT_TAG] = PROCESESS_FIELD_PROCESS_CONTENT_TOOLTIP
 project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_LOG_TAG] = PROCESESS_FIELD_LOG_TOOLTIP
+project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_OUTPUT_UCLM_TAG] = PROCESESS_FIELD_OUTPUT_UCLM_TOOLTIP
+project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_OUTPUT_UCO_TAG] = PROCESESS_FIELD_OUTPUT_UCO_TOOLTIP
 project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_CONTENT_UCLM_TAG] = PROCESESS_FIELD_CONTENT_UCLM_TOOLTIP
 project_processes_dialog_tooltip_by_header_tag[PROCESESS_FIELD_CONTENT_UCO_TAG] = PROCESESS_FIELD_CONTENT_UCO_TOOLTIP
 

@@ -298,6 +298,24 @@ class ProcessesManager:
         #     return str_error
         return str_error, arguments
 
+    def get_process_output_arguments(self, provider, name):
+        str_error = ""
+        output_arguments = []
+        if not provider in self.processes_by_provider:
+            str_error = ('ProcessesManager.get_process_output_arguments\n')
+            str_error += ('Not exists processes provider: {}'.format(provider))
+            return str_error, output_arguments
+        if not name in self.processes_by_provider[provider]:
+            str_error = ('ProcessesManager.get_process_output_arguments\n')
+            str_error += ('Not exists process name: {} for provider: {}'.format(name, provider))
+            return str_error, output_arguments
+        process = self.processes_by_provider[provider][name]
+        parametes_manager = process[defs_processes.PROCESS_FIELD_PARAMETERS]
+        str_error, output_arguments = parametes_manager.get_process_output_arguments()
+        if str_error:
+            return str_error, output_arguments
+        return str_error, output_arguments
+
 
     def save(self, provider, name):
         str_error = ""

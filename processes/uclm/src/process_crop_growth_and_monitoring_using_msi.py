@@ -102,7 +102,7 @@ def process(crops_minimum_height,
             shadows_maximum_reflectance,
             segmentation_method,
             kmeans_clusters,
-            output_plant_healthy_suffix,
+            output_plant_damage_suffix,
             output_plant_ndvi_suffix,
             percentile_minimum_threshold,
             raster_layer_dsm_file_path,
@@ -153,10 +153,10 @@ def process(crops_minimum_height,
     is_shapefile = False
     if vector_file_extension.casefold() == ('.shp').casefold():
         is_shapefile = True
-    if is_shapefile and len(output_plant_healthy_suffix) > 3:
+    if is_shapefile and len(output_plant_damage_suffix) > 3:
         str_error = "Function process"
         str_error += ("\nFor shapefile field names suffix cannot be longer than three characters: {}"
-                      .format(output_plant_healthy_suffix))
+                      .format(output_plant_damage_suffix))
         return str_error
     if output_plant_ndvi_suffix:
         if is_shapefile and len(output_plant_ndvi_suffix) > 3:
@@ -387,7 +387,7 @@ def process(crops_minimum_height,
                                   vector_layer_file_path))
             return str_error
     output_field_name_healthy = str_date
-    output_field_name_healthy = output_field_name_healthy + output_plant_healthy_suffix
+    output_field_name_healthy = output_field_name_healthy + output_plant_damage_suffix
     if kmeans_clusters > -1:
         output_field_name_healthy = output_field_name_healthy + 'k'
     else:
@@ -416,8 +416,9 @@ def process(crops_minimum_height,
     sys.stdout.write(string_to_publish_number_of_steps)
     sys.stdout.flush()
     time.sleep(DELAY_SECONDS)
-    cont_feature = 0
+    cont_feature = -1
     for feature in vector_layer:
+        cont_feature = cont_feature + 1
         sys.stdout.write('Processing plant: {}, of {}'.format(str(cont_feature + 1),
                                                    str(number_of_features)))
         sys.stdout.flush()
@@ -452,12 +453,10 @@ def process(crops_minimum_height,
         if orthomosaic_poly.Within(plot_geometry_full):
             plot_geometry = orthomosaic_poly
         if not plot_geometry:
-            cont_feature = cont_feature + 1
             continue
         plot_geometry = plot_geometry_full.Intersection(orthomosaic_poly)
         plot_geometry_area = plot_geometry.GetArea()
         if plot_geometry_area < (3 * orthomosaic_pixel_area):
-            cont_feature = cont_feature + 1
             continue
         geom_points_x = []
         geom_points_y = []
@@ -479,7 +478,6 @@ def process(crops_minimum_height,
                 geom_points_y.append(sc)
         else:
             # sys.exit("ERROR: Geometry needs to be either Polygon or Multipolygon")
-            cont_feature = cont_feature + 1
             continue
         plot_geom_x_min = min(geom_points_x)
         plot_geom_x_max = max(geom_points_x)
@@ -659,7 +657,6 @@ def process(crops_minimum_height,
             position_in_input_values_by_feature_position[cont_feature] = len(input_values) - 1
         else:
             ndvi_mean = -1
-        cont_feature = cont_feature + 1
         int_completed_percentage = int(cont_feature / number_of_features * 100)
         if int_completed_percentage > 0:
             str_total_completed = string_to_publish_completed_steps_percentage.replace(STRING_TO_REPLACE_STEPS,
@@ -695,9 +692,10 @@ def process(crops_minimum_height,
             if centers[i] < center_min_value:
                 center_min_value = centers[i]
                 pos_center_min_value = i
-        cont_feature = 0
+        cont_feature = -1
         vector_layer.ResetReading()
         for feature in vector_layer:
+            cont_feature = cont_feature + 1
             damaged = 0
             ndvi = -1
             if not cont_feature in position_in_input_values_by_feature_position:
@@ -708,7 +706,6 @@ def process(crops_minimum_height,
                 if pos_center == pos_center_min_value:
                     damaged = 1
                 ndvi = input_values[position_in_input_values_by_feature_position[cont_feature]]['value']
-            cont_feature = cont_feature + 1
             feature.SetField(output_field_name_healthy, damaged)
             if output_field_name_ndvi:
                 feature.SetField(output_field_name_ndvi, ndvi)
@@ -724,9 +721,10 @@ def process(crops_minimum_height,
                 threshold_value = input_values[i]['value']
                 break
             number_of_damages = number_of_damages + 1
-        cont_feature = 0
+        cont_feature = -1
         vector_layer.ResetReading()
         for feature in vector_layer:
+            cont_feature = cont_feature + 1
             damaged = 0
             ndvi = -1
             if not cont_feature in position_in_input_values_by_feature_position:
@@ -735,14 +733,12 @@ def process(crops_minimum_height,
                 if cont_feature in damage_positions:
                     damaged = 1
                 ndvi = input_values[position_in_input_values_by_feature_position[cont_feature]]['value']
-            cont_feature = cont_feature + 1
             feature.SetField(output_field_name_healthy, damaged)
             if output_field_name_ndvi:
                 feature.SetField(output_field_name_ndvi, ndvi)
             vector_layer.SetFeature(feature)
     vec_ds = None
     return str_error
-
 
 
 def main():
@@ -808,8 +804,8 @@ def main():
     parser.add_argument("--vector_layer_enabled_field", dest="vector_layer_enabled_field", action="store",
                         type=json.loads, help="vector layer field dictionary: file path, layer name, "
                                               "layer geometry type (a list of valid types) and field name", default=None)
-    parser.add_argument("--output_plant_healthy_suffix", dest="output_plant_healthy_suffix", action="store", type=str,
-                        help="Output field name suffix for plant healthy, maximum of three characters for "
+    parser.add_argument("--output_plant_damage_suffix", dest="output_plant_damage_suffix", action="store", type=str,
+                        help="Output field name suffix for plant damage, maximum of three characters for "
                              "output shapefile", default=None)
     parser.add_argument("--output_plant_ndvi_suffix", dest="output_plant_ndvi_suffix", action="store", type=str,
                       help="Output field name suffix for plant ndvi, maximum of three characters for "
@@ -835,10 +831,10 @@ def main():
     if not args.segmentation_method:
         parser.print_help()
         return
-    if not args.output_plant_healthy_suffix:
+    if not args.output_plant_damage_suffix:
         parser.print_help()
         return
-    output_plant_healthy_suffix = args.output_plant_healthy_suffix
+    output_plant_damage_suffix = args.output_plant_damage_suffix
     output_plant_ndvi_suffix = None
     if args.output_plant_ndvi_suffix:
         output_plant_ndvi_suffix = args.output_plant_ndvi_suffix
@@ -1384,7 +1380,7 @@ def main():
                         shadows_maximum_reflectance,
                         segmentation_method,
                         kmeans_clusters,
-                        output_plant_healthy_suffix,
+                        output_plant_damage_suffix,
                         output_plant_ndvi_suffix,
                         percentile_maximum_threshold,
                         raster_layer_dsm_file_path,

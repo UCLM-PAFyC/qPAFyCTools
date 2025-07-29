@@ -423,6 +423,8 @@ class Project:
                      process_description,
                      process_log,
                      process_date_time_as_string,
+                     process_output_uclm,
+                     process_output_uco,
                      process_content_uclm,
                      process_content_uco):
         str_error = ''
@@ -466,6 +468,18 @@ class Project:
         field[defs_gdal.FIELD_TYPE_TAG] \
             = defs_project.fields_by_layer[defs_project.PROCESESS_LAYER_NAME][defs_project.PROCESESS_FIELD_LOG]
         field[defs_gdal.FIELD_VALUE_TAG] = process_log
+        feature.append(field)
+        field = {}
+        field[defs_gdal.FIELD_NAME_TAG] = defs_project.PROCESESS_FIELD_OUTPUT_UCLM
+        field[defs_gdal.FIELD_TYPE_TAG] \
+            = defs_project.fields_by_layer[defs_project.PROCESESS_LAYER_NAME][defs_project.PROCESESS_FIELD_OUTPUT_UCLM]
+        field[defs_gdal.FIELD_VALUE_TAG] = process_output_uclm
+        feature.append(field)
+        field = {}
+        field[defs_gdal.FIELD_NAME_TAG] = defs_project.PROCESESS_FIELD_OUTPUT_UCO
+        field[defs_gdal.FIELD_TYPE_TAG] \
+            = defs_project.fields_by_layer[defs_project.PROCESESS_LAYER_NAME][defs_project.PROCESESS_FIELD_OUTPUT_UCO]
+        field[defs_gdal.FIELD_VALUE_TAG] = process_output_uco
         feature.append(field)
         field = {}
         field[defs_gdal.FIELD_NAME_TAG] = defs_project.PROCESESS_FIELD_CONTENT_UCLM
@@ -515,6 +529,8 @@ class Project:
             self.process_by_label[process_label][defs_project.PROCESESS_FIELD_DATE_TIME] = process_date_time_as_string
             self.process_by_label[process_label][defs_project.PROCESESS_FIELD_PROCESS_CONTENT] = process_content
             self.process_by_label[process_label][defs_project.PROCESESS_FIELD_LOG] = process_log
+            self.process_by_label[process_label][defs_project.PROCESESS_FIELD_OUTPUT_UCLM] = process_output_uclm
+            self.process_by_label[process_label][defs_project.PROCESESS_FIELD_OUTPUT_UCO] = process_output_uco
             self.process_by_label[process_label][defs_project.PROCESESS_FIELD_CONTENT_UCLM] = process_content_uclm
             self.process_by_label[process_label][defs_project.PROCESESS_FIELD_CONTENT_UCO] = process_content_uco
         return str_error

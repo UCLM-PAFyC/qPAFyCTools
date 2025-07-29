@@ -344,8 +344,9 @@ def process_cwsith(temperature,
     sys.stdout.write(string_to_publish_number_of_steps)
     sys.stdout.flush()
     time.sleep(DELAY_SECONDS)
-    cont_feature = 0
+    cont_feature = -1
     for feature in vector_layer:
+        cont_feature = cont_feature + 1
         sys.stdout.write('Processing plant: {}, of {}'.format(str(cont_feature + 1),
                                                    str(number_of_features)))
         sys.stdout.flush()
@@ -523,7 +524,6 @@ def process_cwsith(temperature,
         if output_nvs_temperature_suffix:
             feature.SetField(output_field_name_nvs, len(crop_temperature_values))
         vector_layer.SetFeature(feature)
-        cont_feature = cont_feature + 1
         int_completed_percentage = int(cont_feature / number_of_features * 100)
         if int_completed_percentage > 0:
             str_total_completed = string_to_publish_completed_steps_percentage.replace(STRING_TO_REPLACE_STEPS,

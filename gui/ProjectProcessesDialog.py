@@ -193,6 +193,8 @@ class ProjectProcessesDialog(QDialog):
             process_date_time_as_string = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_DATE_TIME]
             process_content = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_PROCESS_CONTENT]
             process_log = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_LOG]
+            process_output_uclm = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_OUTPUT_UCLM]
+            process_output_uco = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_OUTPUT_UCO]
             process_content_uclm = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_CONTENT_UCLM]
             process_content_uco = self.project.process_by_label[process_label][defs_project.PROCESESS_FIELD_CONTENT_UCO]
             rowPosition = self.tableWidget.rowCount()
@@ -227,6 +229,16 @@ class ProjectProcessesDialog(QDialog):
             column_pos += 1
             self.column_by_field_name[defs_project.PROCESESS_FIELD_LOG] = column_pos
             self.tableWidget.setItem(rowPosition, column_pos, log_item)
+            output_uclm_item = QTableWidgetItem(process_output_uclm)
+            output_uclm_item.setTextAlignment(Qt.AlignCenter)
+            column_pos += 1
+            self.column_by_field_name[defs_project.PROCESESS_FIELD_OUTPUT_UCLM] = column_pos
+            self.tableWidget.setItem(rowPosition, column_pos, output_uclm_item)
+            output_uco_item = QTableWidgetItem(process_output_uco)
+            output_uco_item.setTextAlignment(Qt.AlignCenter)
+            column_pos += 1
+            self.column_by_field_name[defs_project.PROCESESS_FIELD_OUTPUT_UCO] = column_pos
+            self.tableWidget.setItem(rowPosition, column_pos, output_uco_item)
             content_uclm_item = QTableWidgetItem(process_content_uclm)
             content_uclm_item.setTextAlignment(Qt.AlignCenter)
             column_pos += 1

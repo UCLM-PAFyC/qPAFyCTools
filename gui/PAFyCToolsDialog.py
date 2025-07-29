@@ -289,6 +289,12 @@ class PAFyCToolsDialog(QDialog):
                 break
         if not process:
             return
+        str_error, output_arguments = self.processes_manager.get_process_output_arguments(process_provider,
+                                                                                          process_name)
+        if str_error:
+            Tools.error_msg(str_error)
+            return
+        output_uclm_as_json_str = json.dumps(output_arguments)
         str_error, arguments = self.processes_manager.get_process_arguments(process_provider, process_name)
         if str_error:
             Tools.error_msg(str_error)
@@ -314,16 +320,19 @@ class PAFyCToolsDialog(QDialog):
         dialog_result = dialog.exec()
         process_date_time_as_string = dialog.get_end_date_time_as_string(defs_main.DATE_TIME_STRING_FORMAT)
         process_log = dialog.get_log()
-        process_contentas_dict = {}
-        process_contentas_dict[defs_processes.PROCESS_FIELD_NAME] = process[defs_processes.PROCESS_FIELD_NAME]
-        process_contentas_dict[defs_processes.PROCESS_FIELD_CONTRIBUTIONS] = process[defs_processes.PROCESS_FIELD_CONTRIBUTIONS]
-        process_contentas_dict[defs_processes.PROCESS_FIELD_SRC] = process[defs_processes.PROCESS_FIELD_SRC]
-        process_contentas_dict[defs_processes.PROCESS_FIELD_DESCRIPTION] = process[defs_processes.PROCESS_FIELD_DESCRIPTION]
-        process_contentas_dict[defs_processes.PROCESS_FIELD_DOC] = process[defs_processes.PROCESS_DOC]
-        process_contentas_dict[defs_processes.PROCESS_FIELD_PARAMETERS] \
+        process_content_as_json = {}
+        process_content_as_json[defs_processes.PROCESS_FIELD_NAME] = process[defs_processes.PROCESS_FIELD_NAME]
+        process_content_as_json[defs_processes.PROCESS_FIELD_CONTRIBUTIONS] = process[defs_processes.PROCESS_FIELD_CONTRIBUTIONS]
+        process_content_as_json[defs_processes.PROCESS_FIELD_SRC] = process[defs_processes.PROCESS_FIELD_SRC]
+        process_content_as_json[defs_processes.PROCESS_FIELD_DESCRIPTION] = process[defs_processes.PROCESS_FIELD_DESCRIPTION]
+        process_content_as_json[defs_processes.PROCESS_FIELD_DOC] = process[defs_processes.PROCESS_DOC]
+        process_content_as_json[defs_processes.PROCESS_FIELD_PARAMETERS] \
             = process[defs_processes.PROCESS_FIELD_PARAMETERS].parameters_as_list_of_dict
-        process_contentas_json = json.dumps(process_contentas_dict, indent=4, ensure_ascii=False)
-        process_content = process_contentas_json
+        process_content_as_json[defs_processes.PROCESS_FIELD_DOC] = process[defs_processes.PROCESS_DOC]
+        process_content_as_json = json.dumps(process_content_as_json, indent=4, ensure_ascii=False)
+        process_content = process_content_as_json
+        process_output_uclm = output_uclm_as_json_str
+        process_output_uco = ''
         process_content_uclm = ''
         process_content_uco = ''
         str_error = self.project.save_process(process_content,
@@ -332,6 +341,8 @@ class PAFyCToolsDialog(QDialog):
                                               self.process_description_value,
                                               process_log,
                                               process_date_time_as_string,
+                                              process_output_uclm,
+                                              process_output_uco,
                                               process_content_uclm,
                                               process_content_uco)
         if str_error:
