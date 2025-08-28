@@ -9,3 +9,7 @@ pip uninstall opencv-python
 desde la consola de osgeo4w
 pip install -U pint
 
+- psutil
+desde la consola de osgeo4w
+pip install psutil
+
