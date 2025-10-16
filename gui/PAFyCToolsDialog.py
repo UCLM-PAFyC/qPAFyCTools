@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import (QApplication, QMessageBox, QDialog, QFileDialog, QP
                              QInputDialog, QLineEdit)
 from PyQt5.QtCore import QDir, QFileInfo, QFile
 
-current_path = os.path.dirname(__file__)
+current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(current_path, '..'))
 sys.path.append(os.path.join(current_path, '../..'))
 # sys.path.insert(0, '..')
