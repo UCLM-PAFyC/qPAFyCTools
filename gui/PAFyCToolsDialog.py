@@ -7,10 +7,10 @@ import shutil
 import pathlib
 import json
 
-from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import (QApplication, QMessageBox, QDialog, QFileDialog, QPushButton, QComboBox,
+from qgis.PyQt.uic import loadUi
+from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QFileDialog, QPushButton, QComboBox,
                              QInputDialog, QLineEdit)
-from PyQt5.QtCore import QDir, QFileInfo, QFile
+from qgis.PyQt.QtCore import QDir, QFileInfo, QFile
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(current_path, '..'))
@@ -220,7 +220,7 @@ class PAFyCToolsDialog(QDialog):
     def process_description(self):
         current_text = self.process_description_value
         title = "Enter process description"
-        dialog = SimpleTextEditDialog(title, current_text, False)
+        dialog = SimpleTextEditDialog(title, current_text, False, self)
         ret = dialog.exec()
         # if ret == QDialog.Accepted:
         #     text = dialog.get_text()

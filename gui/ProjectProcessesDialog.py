@@ -7,11 +7,11 @@ import math
 import pathlib
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialog,
+from qgis.PyQt.uic import loadUi
+from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialog,
                              QFileDialog, QPushButton, QComboBox, QPlainTextEdit, QLineEdit,
                              QDialogButtonBox, QVBoxLayout, QTableWidget, QTableWidgetItem)
-from PyQt5.QtCore import QDir, QFileInfo, QFile, QSize, Qt
+from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QSize, Qt
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(current_path, '..'))
@@ -105,7 +105,7 @@ class ProjectProcessesDialog(QDialog):
         elif column_label == defs_project.PROCESESS_FIELD_DESCRIPTION_TAG\
                 or column_label == defs_project.PROCESESS_FIELD_CONTENT_UCLM_TAG\
                 or column_label == defs_project.PROCESESS_FIELD_CONTENT_UCO_TAG:
-            dialog = SimpleTextEditDialog(title, current_text, False)
+            dialog = SimpleTextEditDialog(title, current_text, False, self)
             ret = dialog.exec()
             text = dialog.get_text()
             if text != current_text:
@@ -115,10 +115,10 @@ class ProjectProcessesDialog(QDialog):
                 self.edited_process_fields_by_original_label[original_process_label].append(process_field_name)
                 self.tableWidget.item(row, column).setText(text)
         elif column_label == defs_project.PROCESESS_FIELD_LOG_TAG:
-            dialog = SimpleTextEditDialog(title, current_text, True)
+            dialog = SimpleTextEditDialog(title, current_text, True, self)
             ret = dialog.exec()
         elif column_label == defs_project.PROCESESS_FIELD_PROCESS_CONTENT_TAG:
-            # dialog = SimpleTextEditDialog(title, current_text, True)
+            # dialog = SimpleTextEditDialog(title, current_text, True, self)
             dialog = SimpleJSONDialog(title, current_text, True)
             ret = dialog.exec()
         else:

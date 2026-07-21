@@ -17,17 +17,17 @@ email                : david.hernandez@uclm.es
  *                                                                         *
  ***************************************************************************/
 """
-from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction
+from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, Qt
+from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtWidgets import QAction
 # Initialize Qt resources from file resources.py
 # from .resources import *
 # from .resources_rc import *
 
 import os.path
 import sys
-from PyQt5.QtWidgets import QMessageBox, QFileDialog, QTabWidget, QInputDialog, QLineEdit
-from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QFileInfo, QDir, QObject, QFile
+from qgis.PyQt.QtWidgets import QMessageBox, QFileDialog, QTabWidget, QInputDialog, QLineEdit
+from qgis.PyQt.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QFileInfo, QDir, QObject, QFile
 from qgis.core import QgsApplication, QgsDataSourceUri, Qgis
 
 strQGISVersion = Qgis.QGIS_VERSION
@@ -58,10 +58,11 @@ from PAFyCTools.defs import defs_main
 from PAFyCTools.QGisIFace import QGisIFace
 
 # # sys.path.append("C:\Program Files\JetBrains\PyCharm 2020.3\debug-eggs\pydevd-pycharm.egg") # dhl
-# sys.path.append("C:\Program Files\JetBrains\PyCharm 2023.2\debug-eggs\pydevd-pycharm.egg")  # dhl
-sys.path.append("C:\\Program Files\\JetBrains\\PyCharm 2025.2.0.1\\debug-eggs\\pydevd-pycharm.egg")  # dhl
+# sys.path.append("C:\\Program Files\\JetBrains\\PyCharm 2025.2.0.1\\debug-eggs\\pydevd-pycharm.egg")  # dhl
 # import pydevd
-import pydevd
+
+# sys.path.append("C:\Program Files\JetBrains\PyCharm 2023.2\debug-eggs\pydevd-pycharm.egg")  # dhl
+# import pydevd
 
 
 class qPAFyCTools(object):

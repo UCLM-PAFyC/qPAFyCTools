@@ -1,8 +1,8 @@
 # authors:
 # David Hernandez Lopez, david.hernandez@uclm.es
 
-from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QPushButton, QComboBox
-from PyQt5.QtCore import QDir, QFileInfo, QFile, QDate, QDateTime
+from qgis.PyQt.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QPushButton, QComboBox
+from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QDate, QDateTime
 
 import os
 import sys

@@ -7,11 +7,11 @@ import math
 import pathlib
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialog,
+from qgis.PyQt.uic import loadUi
+from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialog,
                              QFileDialog, QPushButton, QComboBox, QPlainTextEdit, QLineEdit,
                              QDialogButtonBox, QVBoxLayout, QTableWidget, QTableWidgetItem)
-from PyQt5.QtCore import QDir, QFileInfo, QFile, QSize, Qt
+from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QSize, Qt
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(current_path, '..'))
@@ -193,7 +193,7 @@ class ProcessesManagerDialog(QDialog):
         else:
             title = "Process: " + process_name
             current_text = label.replace('\n', ' ') + ':\n\n' + current_text
-            dialog = SimpleTextEditDialog(title, current_text, False)
+            dialog = SimpleTextEditDialog(title, current_text, False, self)
             ret = dialog.exec()
             text = dialog.get_text()
             self.tableWidget.item(row, column).setText(text)
