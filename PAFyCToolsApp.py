@@ -7,13 +7,9 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QApplication
 
 current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-# sys.path.insert(0, '..')
 
-from PAFyCTools.gui.PAFyCToolsDialog import PAFyCToolsDialog
-from PAFyCTools.defs import defs_main
-# import Tools
-
+from gui.PAFyCToolsDialog import PAFyCToolsDialog
+from defs import defs_main
 
 def main():
     app = QApplication(sys.argv)
@@ -25,7 +21,6 @@ def main():
     dialog.setWindowIcon(QIcon(icon_path))
     dialog.show()
     app.exec()
-
 
 if __name__ == '__main__':
     main()

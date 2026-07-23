@@ -1,26 +1,13 @@
 # authors:
 # David Hernandez Lopez, david.hernandez@uclm.es
 
-import sys, os
-current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-# sys.path.insert(0, '..')
-
-from PAFyCTools.lib.Project import Project
-from PAFyCTools.defs import defs_project
-from PAFyCTools.defs import defs_main
-# from lib import gui_defines as gd
-# from lib import qgis_gui_defines as qgd
-# from pyCRSs import CRSsDefines as cd
-# import json
-# import Tools
+from .defs import defs_project
+from .defs import defs_main
 
 from qgis.core import (QgsApplication, QgsDataSourceUri, QgsProject,
                        QgsCoordinateReferenceSystem, QgsCoordinateTransform)
 from qgis.core import QgsProject, QgsVectorLayer, QgsSymbol, QgsRendererCategory, QgsCategorizedSymbolRenderer
 from qgis.core import QgsField, QgsFeature, QgsPoint, QgsGeometry
-from qgis import utils
-from qgis.core import Qgis
 
 class QGisIFace:
     def __init__(self,

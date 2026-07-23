@@ -2,9 +2,6 @@
 # David Hernandez Lopez, david.hernandez@uclm.es
 
 import os
-import sys
-import math
-import pathlib
 
 from PyQt5 import QtCore, QtWidgets
 from qgis.PyQt.uic import loadUi
@@ -13,25 +10,13 @@ from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialo
                              QDialogButtonBox, QVBoxLayout, QTableWidget, QTableWidgetItem)
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QSize, Qt
 
-current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-sys.path.append(os.path.join(current_path, '../..'))
-# sys.path.insert(0, '..')
-# sys.path.insert(0, '../..')
-
-from PAFyCTools.defs import defs_paths, defs_project, defs_main, defs_processes
-from PAFyCTools.lib.Project import Project
-
-common_libs_absolute_path = os.path.join(current_path, defs_paths.COMMON_LIBS_RELATIVE_PATH)
-sys.path.append(common_libs_absolute_path)
+from defs import defs_project
 
 from pyLibQtTools import Tools
 from pyLibQtTools.Tools import SimpleTextEditDialog, SimpleJSONDialog
 
-
 class ProjectProcessesDialog(QDialog):
     """Employee dialog."""
-
     def __init__(self,
                  project,
                  title,
@@ -39,7 +24,7 @@ class ProjectProcessesDialog(QDialog):
                  parent=None):
         super().__init__(parent)
         loadUi(os.path.join(os.path.dirname(__file__), 'ProjectProcessesDialog.ui'), self)
-        # loadUi("lib/InstrumentsDialog.ui", self)
+        # loadUi("core/InstrumentsDialog.ui", self)
         self.project = project
         self.title = title
         self.formats = None

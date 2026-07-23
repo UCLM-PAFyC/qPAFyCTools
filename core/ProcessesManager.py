@@ -2,23 +2,9 @@
 # David Hernandez Lopez, david.hernandez@uclm.es
 
 import os
-import sys
-import pathlib
-import math
-import random
-import re
 import json
 
-current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-sys.path.append(os.path.join(current_path, '../..'))
-# sys.path.insert(0, '..')
-# sys.path.insert(0, '../..')
-
-from PAFyCTools.defs import defs_paths, defs_project, defs_main, defs_processes
-
-common_libs_absolute_path = os.path.join(current_path, defs_paths.COMMON_LIBS_RELATIVE_PATH)
-sys.path.append(common_libs_absolute_path)
+from defs import defs_processes
 
 from pyLibParameters import defs_pars
 from pyLibParameters.ParametersManager import ParametersManager

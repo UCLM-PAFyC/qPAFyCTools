@@ -1,9 +1,7 @@
-
 # authors:
 # David Hernandez Lopez, david.hernandez@uclm.es
 
-import os, sys
-import shutil
+import os
 import pathlib
 import json
 
@@ -12,29 +10,18 @@ from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QFileDialog
                              QInputDialog, QLineEdit)
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile
 
-current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-sys.path.append(os.path.join(current_path, '../..'))
-# sys.path.insert(0, '..')
-# sys.path.insert(0, '../..')
-
-from PAFyCTools.defs import defs_paths, defs_main, defs_project, defs_processes
-from PAFyCTools.lib.Project import Project
-from PAFyCTools.lib.ProcessesManager import ProcessesManager
-from PAFyCTools.gui.ProcessesManagerDialog import ProcessesManagerDialog
-from PAFyCTools.gui.ProjectProcessesDialog import ProjectProcessesDialog
-
-common_libs_absolute_path = os.path.join(current_path, defs_paths.COMMON_LIBS_RELATIVE_PATH)
-sys.path.append(common_libs_absolute_path)
+from defs import defs_main, defs_project, defs_processes
+from core.Project import Project
+from core.ProcessesManager import ProcessesManager
+from gui.ProcessesManagerDialog import ProcessesManagerDialog
+from gui.ProjectProcessesDialog import ProjectProcessesDialog
 
 from pyLibQtTools import Tools
 from pyLibQtTools.Tools import SimpleTextEditDialog
 from pyLibParameters import defs_pars
-from pyLibParameters.ParametersManager import ParametersManager
 from pyLibParameters.ui_qt.ParametersManagerDialog import ParametersManagerDialog
 from pyLibQtTools.QProcessDialog import QProcessDialog
 from pyLibQtTools import defs_qprocess
-
 
 class PAFyCToolsDialog(QDialog):
     """Employee dialog."""

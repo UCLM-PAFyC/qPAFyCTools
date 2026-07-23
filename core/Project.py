@@ -4,31 +4,15 @@
 from qgis.PyQt.QtWidgets import QApplication, QMessageBox, QDialog, QFileDialog, QPushButton, QComboBox
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QDate, QDateTime
 
-import os
-import sys
-import math
-import random
-import re
 import json
 
 from osgeo import gdal, osr, ogr
 gdal.UseExceptions()
 
-current_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(current_path, '..'))
-sys.path.append(os.path.join(current_path, '../..'))
-# sys.path.insert(0, '..')
-# sys.path.insert(0, '../..')
+from defs import defs_project, defs_main
+from gui.ProjectDefinitionDialog import ProjectDefinitionDialog
 
-from PAFyCTools.defs import defs_paths, defs_project, defs_main
-from PAFyCTools.gui.ProjectDefinitionDialog import ProjectDefinitionDialog
-
-common_libs_absolute_path = os.path.join(current_path, defs_paths.COMMON_LIBS_RELATIVE_PATH)
-sys.path.append(common_libs_absolute_path)
-
-from pyLibCRSs import CRSsDefines as defs_crs
 from pyLibCRSs.CRSsTools import CRSsTools
-from pyLibQtTools import Tools
 from pyLibGDAL import defs_gdal
 from pyLibGDAL.GDALTools import GDALTools
 

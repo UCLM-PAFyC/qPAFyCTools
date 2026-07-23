@@ -44,7 +44,7 @@ projVersionMajor = osr.GetPROJVersionMajor()
 pluginsPath = QFileInfo(QgsApplication.qgisUserDatabaseFilePath()).path()
 pluginPath = os.path.dirname(os.path.realpath(__file__))
 pluginPath = os.path.join(pluginsPath, pluginPath)
-libPath = os.path.join(pluginPath, 'lib')
+libPath = os.path.join(pluginPath, 'core')
 # existsPluginPath = QDir(libPath).exists()
 sys.path.append(pluginPath)
 sys.path.append(libPath)
@@ -53,9 +53,9 @@ sys.path.append(os.path.join(current_path, '..'))
 # sys.path.insert(0, '..')
 
 # Import the code for the dialog
-from PAFyCTools.gui.PAFyCToolsDialog import PAFyCToolsDialog
-from PAFyCTools.defs import defs_main
-from PAFyCTools.QGisIFace import QGisIFace
+from gui.PAFyCToolsDialog import PAFyCToolsDialog
+from defs import defs_main
+import QGisIFace
 
 # # sys.path.append("C:\Program Files\JetBrains\PyCharm 2020.3\debug-eggs\pydevd-pycharm.egg") # dhl
 # sys.path.append("C:\\Program Files\\JetBrains\\PyCharm 2025.2.0.1\\debug-eggs\\pydevd-pycharm.egg")  # dhl
