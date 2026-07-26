@@ -9,12 +9,12 @@ import json
 from osgeo import gdal, osr, ogr
 gdal.UseExceptions()
 
-from defs import defs_project, defs_main
-from gui.ProjectDefinitionDialog import ProjectDefinitionDialog
-
-from pyLibCRSs.CRSsTools import CRSsTools
+from pyLibCRSs import CRSsTools
 from pyLibGDAL import defs_gdal
-from pyLibGDAL.GDALTools import GDALTools
+from pyLibGDAL import GDALTools
+
+from pafyc_defs import defs_project, defs_main
+from pafyc_gui.ProjectDefinitionDialog import ProjectDefinitionDialog
 
 class Project:
     def __init__(self,

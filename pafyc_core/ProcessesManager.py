@@ -4,11 +4,11 @@
 import os
 import json
 
-from defs import defs_processes
-
 from pyLibParameters import defs_pars
-from pyLibParameters.ParametersManager import ParametersManager
-from pyLibQtTools import Tools
+from pyLibParameters import ParametersManager
+from pyLibQtTools import error_msg, info_msg, get_file
+
+from pafyc_defs import defs_processes
 
 class ProcessesManager:
     def __init__(self):
@@ -134,7 +134,7 @@ class ProcessesManager:
             # str_error = ('ProcessesManager.load_process_file\n')
             # str_error += ("\nIn process from file:\n{}".format(process_file))
             # str_error += ('\nError:\n{}'.format(str_aux_error))
-            # Tools.error_msg(str_error)
+            # error_msg(str_error)
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("No field {} in process from file:\n{}".
                           format(defs_processes.PROCESS_FIELD_PARAMETERS, process_file))
@@ -171,12 +171,12 @@ class ProcessesManager:
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nProcess source file is empty')
-            Tools.error_msg(str_error)
+            error_msg(str_error)
         elif not os.path.exists(process_src_file):
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nNot exists process source file:\n{}'.format(src_file_name))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             process_src_file = ''
         if not process_src_file:
             dialog_title = 'Select process source python file'
@@ -185,10 +185,10 @@ class ProcessesManager:
             file_types = [defs_processes.PROCESSES_SRC_FILES_EXTENSION]
             file_mode = defs_pars.FILE_MODE_READ
             mandatory = True
-            str_error, process_src_file = Tools.get_file(dialog_title, previous_file, previous_path,
+            str_error, process_src_file = get_file(dialog_title, previous_file, previous_path,
                                                          file_types, file_mode,mandatory)
             if str_error:
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return str_error, process
             need_save = True
         process_doc_file = ''
@@ -208,12 +208,12 @@ class ProcessesManager:
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nDocumentation file is empty')
-            Tools.error_msg(str_error)
+            error_msg(str_error)
         elif not os.path.exists(process_doc_file):
             str_error = ('ProcessesManager.load_process_file\n')
             str_error += ("\nIn process from file:\n{}".format(process_file))
             str_error += ('\nNot exists documentation file:\n{}'.format(process_doc_file))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             process_doc_file = ''
         if not process_doc_file:
             dialog_title = 'Select process documentation pdf file'
@@ -222,10 +222,10 @@ class ProcessesManager:
             file_types = [defs_processes.PROCESSES_DOC_FILES_EXTENSION]
             file_mode = defs_pars.FILE_MODE_READ
             mandatory = False
-            str_error, process_doc_file = Tools.get_file(dialog_title, previous_file, previous_path,
+            str_error, process_doc_file = get_file(dialog_title, previous_file, previous_path,
                                                          file_types, file_mode,mandatory)
             if str_error:
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return str_error, process
             need_save = True
         process = {}

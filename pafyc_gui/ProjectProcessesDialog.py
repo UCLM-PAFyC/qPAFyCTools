@@ -10,10 +10,9 @@ from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialo
                              QDialogButtonBox, QVBoxLayout, QTableWidget, QTableWidgetItem)
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QSize, Qt
 
-from defs import defs_project
+from pyLibQtTools import error_msg, info_msg, SimpleTextEditDialog, SimpleJSONDialog
 
-from pyLibQtTools import Tools
-from pyLibQtTools.Tools import SimpleTextEditDialog, SimpleJSONDialog
+from pafyc_defs import defs_project
 
 class ProjectProcessesDialog(QDialog):
     """Employee dialog."""
@@ -24,7 +23,7 @@ class ProjectProcessesDialog(QDialog):
                  parent=None):
         super().__init__(parent)
         loadUi(os.path.join(os.path.dirname(__file__), 'ProjectProcessesDialog.ui'), self)
-        # loadUi("core/InstrumentsDialog.ui", self)
+        # loadUi("pafyc_core/InstrumentsDialog.ui", self)
         self.project = project
         self.title = title
         self.formats = None
@@ -80,7 +79,7 @@ class ProjectProcessesDialog(QDialog):
                         break
                 if exists_label:
                     str_msg = ('Exists another process with label: {}'.format(text))
-                    Tools.info_msg(str_msg)
+                    info_msg(str_msg)
                     return
                 if not original_process_label in self.edited_process_fields_by_original_label:
                     self.edited_process_fields_by_original_label[original_process_label] = []
@@ -108,7 +107,7 @@ class ProjectProcessesDialog(QDialog):
             ret = dialog.exec()
         else:
             str_msg = ('Process {} is not editable'.format(column_label))
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
             return
         self.tableWidget.resizeColumnToContents(0)
         self.tableWidget.resizeColumnToContents(3)
@@ -124,14 +123,14 @@ class ProjectProcessesDialog(QDialog):
                 process_labels_to_remove.append(process_label)
         if len(process_labels_to_remove) < 1:
             str_error = "Select processes to remove"
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         for i in range(len(process_labels_to_remove)):
             process_label = process_labels_to_remove[i]
             str_error = self.project.remove_process(process_label)
             if str_error:
                 str_msg = ('Removing process: {}, error:\n'.format(process_label, str_error))
-                Tools.error_msg(str_msg)
+                error_msg(str_msg)
                 return
         self.update_gui()
         return
@@ -139,7 +138,7 @@ class ProjectProcessesDialog(QDialog):
     def save(self):
         if not bool(self.edited_process_fields_by_original_label):
             str_msg = ('Nothing to do')
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
         for original_label in self.edited_process_fields_by_original_label:
             process_label = original_label
             row = self.row_by_original_process_label[original_label]
@@ -158,10 +157,10 @@ class ProjectProcessesDialog(QDialog):
             if str_aux_error:
                 str_error = ('Error updating project definition:\n{}'.
                              format(str_aux_error))
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return
         str_msg = "Process completed"
-        Tools.info_msg(str_msg)
+        info_msg(str_msg)
         return
 
     def update_gui(self):

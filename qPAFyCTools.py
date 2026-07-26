@@ -44,7 +44,7 @@ projVersionMajor = osr.GetPROJVersionMajor()
 pluginsPath = QFileInfo(QgsApplication.qgisUserDatabaseFilePath()).path()
 pluginPath = os.path.dirname(os.path.realpath(__file__))
 pluginPath = os.path.join(pluginsPath, pluginPath)
-libPath = os.path.join(pluginPath, 'core')
+libPath = os.path.join(pluginPath, 'pafyc_core')
 # existsPluginPath = QDir(libPath).exists()
 sys.path.append(pluginPath)
 sys.path.append(libPath)
@@ -52,10 +52,11 @@ current_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(current_path, '..'))
 # sys.path.insert(0, '..')
 
+from QGisIFace import QGisIFace
+
 # Import the code for the dialog
-from gui.PAFyCToolsDialog import PAFyCToolsDialog
-from defs import defs_main
-import QGisIFace
+from pafyc_gui.PAFyCToolsDialog import PAFyCToolsDialog
+from pafyc_defs import defs_main
 
 # # sys.path.append("C:\Program Files\JetBrains\PyCharm 2020.3\debug-eggs\pydevd-pycharm.egg") # dhl
 # sys.path.append("C:\\Program Files\\JetBrains\\PyCharm 2025.2.0.1\\debug-eggs\\pydevd-pycharm.egg")  # dhl
@@ -64,12 +65,19 @@ import QGisIFace
 # sys.path.append("C:\Program Files\JetBrains\PyCharm 2023.2\debug-eggs\pydevd-pycharm.egg")  # dhl
 # import pydevd
 
+# sys.path.append("C:/Program Files/JetBrains/PyCharm 2026.1.4/debug-eggs/pydevd-pycharm.egg")  # dhl
+# import pydevd_pycharm
+
 
 class qPAFyCTools(object):
 
     def __init__(self, iface):
 
-        # pydevd.settrace('localhost',port=54100,stdoutToServer=True,stderrToServer=True)
+        # pydevd.settrace('localhost', port=54000)
+        # pydevd.settrace('localhost', port=54100, stdoutToServer=True, stderrToServer=True)
+        # pydevd_pycharm.settrace('localhost',port=54100, stdoutToServer=True, stderrToServer=True) # old
+
+        # pydevd_pycharm.settrace('localhost',port=54100, stdout_to_server=True, stderr_to_server=True)
 
         self.projVersionMajor = projVersionMajor
         self.path_plugin = pluginPath

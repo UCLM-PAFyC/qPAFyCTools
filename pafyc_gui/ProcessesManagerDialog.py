@@ -11,12 +11,11 @@ from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QInputDialo
                              QDialogButtonBox, QVBoxLayout, QTableWidget, QTableWidgetItem)
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile, QSize, Qt
 
-from defs import defs_processes
-
 from pyLibParameters import defs_pars
-from pyLibParameters.ui_qt.ParametersManagerDialog import ParametersManagerDialog
-from pyLibQtTools import Tools
-from pyLibQtTools.Tools import SimpleTextEditDialog
+from pyLibParameters import ParametersManagerDialog
+from pyLibQtTools import error_msg, info_msg, SimpleTextEditDialog
+
+from pafyc_defs import defs_processes
 
 class ProcessesManagerDialog(QDialog):
     """Employee dialog."""
@@ -72,7 +71,7 @@ class ProcessesManagerDialog(QDialog):
             dialog_result = dialog.exec()
             # if dialog_result != QDialog.Accepted:
             #     return str_error
-            # Tools.error_msg(str_error)
+            # error_msg(str_error)
         elif label == defs_processes.PROCESS_FIELD_FILE_TAG:
             title = "Process: " + process_name
             process_file_path = process[defs_processes.PROCESS_FILE]
@@ -98,7 +97,7 @@ class ProcessesManagerDialog(QDialog):
                                                                                   process_provider)
                     if str_error:
                         self.processes_manager.processes_by_provider[process_provider][process_name] = previous_process
-                        Tools.error_msg(str_error)
+                        error_msg(str_error)
                         return
                     self.processes_manager.processes_by_provider[process_provider][process_name] = process
                 last_path = QFileInfo(file_name).absolutePath()
@@ -107,23 +106,23 @@ class ProcessesManagerDialog(QDialog):
                 self.tableWidget.item(row, column).setText(file_name)
         elif label == defs_processes.PROCESS_FIELD_NAME_TAG:
             str_msg = ('Process name is not editable')
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
             return
         elif label == defs_processes.PROCESS_FIELD_PROVIDER_TAG:
             str_msg = ('Process provider is not editable')
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
             return
         elif label == defs_processes.PROCESS_FIELD_CONTRIBUTIONS_METHODOLOGY_TAG:
             str_msg = ('Process contributors methodology is not editable')
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
             return
         elif label == defs_processes.PROCESS_FIELD_CONTRIBUTIONS_SOFTWARE_TAG:
             str_msg = ('Process contributors software is not editable')
-            Tools.info_msg(str_msg)
+            info_msg(str_msg)
             return
         elif label == defs_processes.PROCESS_FIELD_SRC_TAG:
             # str_msg = ('Process source file is not editable')
-            # Tools.info_msg(str_msg)
+            # info_msg(str_msg)
             # return
             title = "Process: " + process_name
             previous_src_file = process[defs_processes.PROCESS_FIELD_SRC]
@@ -150,7 +149,7 @@ class ProcessesManagerDialog(QDialog):
                 self.tableWidget.item(row, column).setText(file_name)
         elif label == defs_processes.PROCESS_FIELD_DOC_TAG:
             # str_msg = ('Process documentation file is not editable')
-            # Tools.info_msg(str_msg)
+            # info_msg(str_msg)
             # return
             title = "Process: " + process_name
             previous_doc_file = process[defs_processes.PROCESS_FIELD_DOC]
@@ -209,10 +208,10 @@ class ProcessesManagerDialog(QDialog):
             if str_error:
                 str_error = ('Saving process provider: {}, name: {}\nError:\n{}'.
                              format(process_provider, process_name, str_error))
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 # return
         str_msg = ('Saving of processes has finished')
-        Tools.info_msg(str_msg)
+        info_msg(str_msg)
         return
 
     def update_gui(self):

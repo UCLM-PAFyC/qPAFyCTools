@@ -1,8 +1,8 @@
 # authors:
 # David Hernandez Lopez, david.hernandez@uclm.es
 
-from .defs import defs_project
-from .defs import defs_main
+from .pafyc_defs import defs_project
+from .pafyc_defs import defs_main
 
 from qgis.core import (QgsApplication, QgsDataSourceUri, QgsProject,
                        QgsCoordinateReferenceSystem, QgsCoordinateTransform)

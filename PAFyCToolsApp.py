@@ -8,8 +8,8 @@ from qgis.PyQt.QtWidgets import QApplication
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-from gui.PAFyCToolsDialog import PAFyCToolsDialog
-from defs import defs_main
+from pafyc_gui.PAFyCToolsDialog import PAFyCToolsDialog
+from pafyc_defs import defs_main
 
 def main():
     app = QApplication(sys.argv)

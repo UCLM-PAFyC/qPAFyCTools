@@ -10,18 +10,17 @@ from qgis.PyQt.QtWidgets import (QApplication, QMessageBox, QDialog, QFileDialog
                              QInputDialog, QLineEdit)
 from qgis.PyQt.QtCore import QDir, QFileInfo, QFile
 
-from defs import defs_main, defs_project, defs_processes
-from core.Project import Project
-from core.ProcessesManager import ProcessesManager
-from gui.ProcessesManagerDialog import ProcessesManagerDialog
-from gui.ProjectProcessesDialog import ProjectProcessesDialog
-
-from pyLibQtTools import Tools
-from pyLibQtTools.Tools import SimpleTextEditDialog
+from pyLibQtTools import error_msg, info_msg, SimpleTextEditDialog
 from pyLibParameters import defs_pars
-from pyLibParameters.ui_qt.ParametersManagerDialog import ParametersManagerDialog
-from pyLibQtTools.QProcessDialog import QProcessDialog
+from pyLibParameters import ParametersManagerDialog
+from pyLibQtTools import QProcessDialog
 from pyLibQtTools import defs_qprocess
+
+from pafyc_defs import defs_main, defs_project, defs_processes
+from pafyc_core.Project import Project
+from pafyc_core.ProcessesManager import ProcessesManager
+from pafyc_gui.ProcessesManagerDialog import ProcessesManagerDialog
+from pafyc_gui.ProjectProcessesDialog import ProjectProcessesDialog
 
 class PAFyCToolsDialog(QDialog):
     """Employee dialog."""
@@ -62,7 +61,7 @@ class PAFyCToolsDialog(QDialog):
         if str_error:
             str_error = ('Error updating project definition:\n{}'.
                          format(str_error))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.project = None
             if os.path.exists(file_name):
                 os.remove(file_name)
@@ -76,7 +75,7 @@ class PAFyCToolsDialog(QDialog):
         processes_manager = ProcessesManager()
         str_error = processes_manager.initialize(processes_path)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         self.processes_manager = processes_manager
         self.processesManagerPushButton.clicked.connect(self.select_processes_manager_gui)
@@ -133,23 +132,23 @@ class PAFyCToolsDialog(QDialog):
         str_error, wkb_geometry = self.qgis_iface.get_map_canvas_wkb_geometry_in_project_crs()
         if str_error:
             str_error = ('Getting map canvas WKB geometry, error:\n{}'.format(str_error))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         text, okPressed = QInputDialog.getText(self, "Location name", "Enter name:",
                                                QLineEdit.Normal)
         if okPressed and text != '':
             if text in self.project.get_map_views():
                 str_error = ('Exists a previous location with name: {}'.format(text))
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return
             str_error = self.project.add_map_view(text, wkb_geometry)
             if str_error:
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return
             self.update_locations(text)
         else:
             str_error = ('You must enter a valid location name')
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         return
 
@@ -162,11 +161,11 @@ class PAFyCToolsDialog(QDialog):
             str_error = ('Opening project, error:\n{}'.format(str_error))
         str_error = self.project.create_processes_layer() #if not exists
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         str_error = self.project.load_processes()
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         self.processComboBox.adjustSize()
         return str_error
@@ -201,7 +200,7 @@ class PAFyCToolsDialog(QDialog):
         dialog_result = dialog.exec()
         # if dialog_result != QDialog.Accepted:
         #     return str_error
-        # Tools.error_msg(str_error)
+        # error_msg(str_error)
         return
 
     def process_description(self):
@@ -248,22 +247,22 @@ class PAFyCToolsDialog(QDialog):
     def process_run(self):
         if not self.process_author_value:
             msg = ("Input process author")
-            Tools.info_msg(msg)
+            info_msg(msg)
             return
         if not self.process_description_value:
             msg = ("Input process description")
-            Tools.info_msg(msg)
+            info_msg(msg)
             return
         if not self.process_label_value:
             msg = ("Input process label")
-            Tools.info_msg(msg)
+            info_msg(msg)
             return
         if self.process_label_value in self.project.process_by_label:
             msg = ("Exists another process with label: {}".format(self.process_label_value))
             msg += ("\nChange the label for new process,")
             msg += ("\nchange the label in the existing process ")
             msg += ("\nor remove the existing process")
-            Tools.info_msg(msg)
+            info_msg(msg)
             return
         process_name = self.processComboBox.currentText()
         if process_name == defs_main.NO_COMBO_SELECT:
@@ -279,12 +278,12 @@ class PAFyCToolsDialog(QDialog):
         str_error, output_arguments = self.processes_manager.get_process_output_arguments(process_provider,
                                                                                           process_name)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         output_uclm_as_json_str = json.dumps(output_arguments)
         str_error, arguments = self.processes_manager.get_process_arguments(process_provider, process_name)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         arguments.append('--' + defs_qprocess.ARGPARSER_TAG_STRING_TO_PUBLISH_THE_NUMBER_OF_STEPS)
         arguments.append('\"' + defs_qprocess.STRING_TO_PUBLISH_THE_NUMBER_OF_STEPS_DEFAULT + '\"')
@@ -333,24 +332,24 @@ class PAFyCToolsDialog(QDialog):
                                               process_content_uclm,
                                               process_content_uco)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         if self.qgis_iface:
             str_error = self.qgis_iface.reload_all_layers()
             if str_error:
-                Tools.error_msg(str_error)
+                error_msg(str_error)
                 return
         return
 
     def project_definition(self):
         if not self.project:
             str_error = ('Not exists project')
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         str_error = self.project.project_definition_gui()
         if str_error:
             str_error = ('Project definition, error:\n{}'.format(str_error))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             return
         return
 
@@ -362,7 +361,7 @@ class PAFyCToolsDialog(QDialog):
             return
         str_error = self.project.remove_map_view(map_view_id)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
         self.update_locations()
         return
 
@@ -373,7 +372,7 @@ class PAFyCToolsDialog(QDialog):
         dialog_result = dialog.exec()
         # if dialog_result != QDialog.Accepted:
         #     return str_error
-        # Tools.error_msg(str_error)
+        # error_msg(str_error)
         return str_error
 
     def select_project_file(self):
@@ -409,12 +408,12 @@ class PAFyCToolsDialog(QDialog):
             if os.path.exists(file_name):
                 str_error = self.open_project(file_name)
                 if str_error:
-                    Tools.error_msg(str_error)
+                    error_msg(str_error)
                     return
             else:
                 str_error = self.create_project(file_name)
                 if str_error:
-                    Tools.error_msg(str_error)
+                    error_msg(str_error)
                     return
             if not self.project:
                 return
@@ -436,12 +435,12 @@ class PAFyCToolsDialog(QDialog):
             return
         str_error, wkb_geometry = self.qgis_iface.get_map_canvas_wkb_geometry_in_project_crs()
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.update_locations()
             return
         str_error = self.project.update_map_view(map_view_id, wkb_geometry)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.update_locations()
             return
         self.update_locations(map_view_id)
@@ -455,17 +454,17 @@ class PAFyCToolsDialog(QDialog):
             return
         str_error, wkb_geometry = self.project.get_map_view_wkb_geometry(map_view_id)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.update_locations()
             return
         if not wkb_geometry:
             str_error = ('Null geometry for location: {}'.format(map_view_id))
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.update_locations()
             return
         str_error = self.qgis_iface.set_map_canvas_from_wkb_geometry_in_project_crs(wkb_geometry)
         if str_error:
-            Tools.error_msg(str_error)
+            error_msg(str_error)
             self.update_locations()
             return
         return
